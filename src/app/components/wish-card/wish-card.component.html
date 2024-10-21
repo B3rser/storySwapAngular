@@ -1,1 +1,19 @@
-<p>wish-card works!</p>
+<mat-card class="card">
+  <button mat-icon-button class="btn-close">
+    <mat-icon>close</mat-icon>
+  </button>
+  <img
+    [src]="wishInfo.book.img"
+    alt="{{ wishInfo.book.title }}"
+    class="book-image"
+  />
+  <div class="card-body">
+    <h5 class="book-title">{{ wishInfo.book.title }}</h5>
+    <p class="book-author">{{ wishInfo.book.author }}</p>
+    <p class="book-date">
+      Performed on {{ wishInfo.date.getDate() }}/{{
+        wishInfo.date.getMonth()
+      }}/{{ wishInfo.date.getFullYear() }}
+    </p>
+  </div>
+</mat-card>

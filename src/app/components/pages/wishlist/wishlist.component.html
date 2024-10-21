@@ -4,27 +4,7 @@
     *ngIf="wishItems && wishItems.length > 0; else emptyList"
     class="wish-list-container"
   >
-    <div *ngFor="let wishItem of wishItems">
-      <mat-card class="card">
-        <button mat-icon-button class="btn-close">
-          <mat-icon>close</mat-icon>
-        </button>
-        <img
-          [src]="wishItem.book.img"
-          alt="{{ wishItem.book.title }}"
-          class="book-image"
-        />
-        <div class="card-body">
-          <h5 class="book-title">{{ wishItem.book.title }}</h5>
-          <p class="book-author">{{ wishItem.book.author }}</p>
-          <p class="book-date">
-            Performed on {{ wishItem.date.getDate() }}/{{
-              wishItem.date.getMonth()
-            }}/{{ wishItem.date.getFullYear() }}
-          </p>
-        </div>
-      </mat-card>
-    </div>
+    <wish-card *ngFor="let wishItem of wishItems" [wishInfo]="wishItem" />
   </div>
 
   <ng-template #emptyList>

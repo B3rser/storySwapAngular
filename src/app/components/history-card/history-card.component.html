@@ -1,0 +1,39 @@
+<mat-card class="card">
+  <h3>{{getTitle()}}</h3>
+  <div class="card-body">
+    <div class="book">
+      <img
+        [src]="historyInfo.id_book1.img"
+        alt="{{ historyInfo.id_book1.title }}"
+        class="image"
+      />
+      <div class="book-info">
+        <h5 class="title">{{ historyInfo.id_book1.title }}</h5>
+        <p class="author">{{ historyInfo.id_book1.author }}</p>
+        <p class="author">{{ historyInfo.id_user1.name }}</p>
+        <p class="date">
+          Performed on {{ historyInfo.added_date.getDate() }}/{{
+            historyInfo.added_date.getMonth()
+          }}/{{ historyInfo.added_date.getFullYear() }}
+        </p>
+      </div>
+    </div>
+    <div class="book" *ngIf="historyInfo.type === 'Swap'">
+      <img
+        [src]="historyInfo.id_book2.img"
+        alt="{{ historyInfo.id_book2.title }}"
+        class="image"
+      />
+      <div class="book-info">
+        <h5 class="title">{{ historyInfo.id_book2.title }}</h5>
+        <p class="author">{{ historyInfo.id_book2.author }}</p>
+        <p class="author">{{ historyInfo.id_user1.name }}</p>
+        <p class="date">
+          Performed on {{ historyInfo.added_date.getDate() }}/{{
+            historyInfo.added_date.getMonth()
+          }}/{{ historyInfo.added_date.getFullYear() }}
+        </p>
+      </div>  
+    </div>
+  </div>
+</mat-card>

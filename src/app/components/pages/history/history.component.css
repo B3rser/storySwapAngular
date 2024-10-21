@@ -1,0 +1,7 @@
+.history-list-container {
+  width: 80vw;
+  display: flex;
+  gap: 30px;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
