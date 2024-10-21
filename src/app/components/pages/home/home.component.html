@@ -1,0 +1,12 @@
+<div style="display: flex; flex-direction: column; align-items: center">
+  <div class="bannerScrollHorizontal">
+    <img class="bannerImg" src="assets/bannerEvent.png" />
+    <div style="margin-top: 10px;">
+      <button mat-icon-button class="circle-button">
+      </button>
+    </div>
+  </div>
+  <row-books [books]="books" [title]="'New'" />
+  <row-books [books]="books" [title]="'Most wished'" />
+  <row-books [books]="books" [title]="'Most sold'" />
+</div>
