@@ -1,0 +1,30 @@
+<div class="book-details-container">
+    <div class="book-image">
+      <img [src]="book.image" alt="{{ book.title }}" />
+    </div>
+    <div class="book-info">
+      <h2 class = "title-details">{{ book.title }}</h2>
+      <h3 class = "author-details">By: {{ book.author }}</h3>
+      <p>{{ book.description }}</p>
+      <p>{{ book.release_date }} <strong>release date</strong> </p>
+      <p>{{ book.gender }} <strong>genre</strong> </p>
+      
+      <p>
+        <span class="stars">
+          <mat-icon *ngFor="let star of stars" class="star">
+            {{ star === 1 ? 'star' : star === 0.5 ? 'star_half' : 'star_border' }}
+          </mat-icon>
+        </span>
+        ({{ book.score }} / 5)
+        <strong>score</strong>
+      </p>
+
+      <div class="buttons-container">
+        <app-button label="Buy" type="buy"></app-button>
+        <app-button label="Swap" type="swap"></app-button>
+        <app-button label="Add to wishlist" type="whishlist"></app-button>
+      </div>
+      
+    </div>
+  </div>
+  
