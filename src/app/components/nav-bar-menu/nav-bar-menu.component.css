@@ -1,0 +1,29 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem;
+  background-color: #f8f9fa;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background-color: #a6c4c0;
+  border-radius: 25px;
+  padding: 5px 15px;
+  width: 300px;
+}
+
+.search-input {
+  border: none;
+  background-color: transparent;
+  outline: none;
+  width: 100%;
+  font-size: 16px;
+  color: #333;
+}
+
+.search-input::placeholder {
+  color: #8e8e8e;
+}
