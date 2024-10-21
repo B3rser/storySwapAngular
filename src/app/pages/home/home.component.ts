@@ -1,9 +1,9 @@
 import { NgFor } from '@angular/common';
 import { Component } from '@angular/core';
-import { RowBooksComponent } from '../../row-books/row-books.component';
+import { RowBooksComponent } from '../../components/row-books/row-books.component';
 import { MatButtonModule } from '@angular/material/button';
 import { Title } from '@angular/platform-browser';
-import { Book } from '../../../interfaces/book';
+import { Book } from '../../interfaces/book';
 
 @Component({
   selector: 'home',

@@ -1,0 +1,10 @@
+.book-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+  }
+
+.title-items{
+  color: #3E5C76;
+  padding-left: 20px;
+}

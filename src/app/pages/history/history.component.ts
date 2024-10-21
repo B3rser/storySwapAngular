@@ -1,7 +1,7 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
-import { HistoryItem } from '../../../interfaces/history-item';
-import { HistoryCardComponent } from '../../history-card/history-card.component';
+import { HistoryItem } from '../../interfaces/history-item';
+import { HistoryCardComponent } from '../../components/history-card/history-card.component';
 import { Title } from '@angular/platform-browser';
 
 @Component({

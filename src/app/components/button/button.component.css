@@ -1,0 +1,35 @@
+.btn-primary {
+  background-color: #D6DEE6;
+  color: #0D1321;
+  border: none;
+}
+
+.btn-secondary {
+  background-color: #3E5C76;
+  color: white;
+  border: none;
+}
+
+.btn-whish{
+  background-color: #0D1321;
+  color: white;
+  border: none;
+
+}
+
+.btn-default {
+  background-color: #e0e0e0;
+  color: black;
+  border: none;
+}
+
+button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+button:hover {
+  opacity: 0.9;
+}

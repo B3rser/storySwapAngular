@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
-import { WishItem } from '../../../interfaces/wish-item';
+import { WishItem } from '../../interfaces/wish-item';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
-import { WishCardComponent } from '../../wish-card/wish-card.component';
+import { WishCardComponent } from '../../components/wish-card/wish-card.component';
 import { Title } from '@angular/platform-browser';
 
 @Component({

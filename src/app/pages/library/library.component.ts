@@ -1,8 +1,8 @@
 import { NgFor, NgIf } from '@angular/common';
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { Book } from '../../../interfaces/book';
-import { FloatingBtnComponent } from "../../floating-btn/floating-btn.component";
+import { Book } from '../../interfaces/book';
+import { FloatingBtnComponent } from "../../components/floating-btn/floating-btn.component";
 
 @Component({
   selector: 'library',
