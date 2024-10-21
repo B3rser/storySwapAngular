@@ -2,43 +2,7 @@
   width: 80vw;
   display: flex;
   gap: 20px;
-  justify-content: center;
+  /* justify-content: center; */
   white-space: nowrap;
   overflow-x: auto;
-}
-
-.book-image {
-  width: 80%;
-  height: 80%;
-  border-radius: 5px;
-  object-fit: cover;
-}
-
-.card-body {
-  padding: 10px 0;
-}
-
-.book-title {
-  font-size: 16px;
-  font-weight: bold;
-}
-
-.book-author {
-  font-size: 14px;
-  color: #555;
-}
-
-.book-rating {
-  font-size: 14px;
-  color: #888;
-}
-
-.card {
-  box-shadow: none;
-  border: none;
-  background-color: transparent;
-  min-width: 150px;
-  align-items: center;
-  background-color: transparent;
-  text-align: center;
 }

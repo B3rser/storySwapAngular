@@ -2,7 +2,7 @@ import { Book } from "./book";
 import { User } from "./user";
 
 export interface HistoryItem {
-  id: string,
+  id: string;
   added_date: Date;
   id_book1: Book;
   id_book2: Book;

@@ -18,9 +18,12 @@ export class WishCardComponent {
     book: {
       id: '',
       title: '',
-      img: '',
-      rating:-1,
+      image: '',
+      score:-1,
       author: '',
+      description: '',
+      gender: '',
+      release_date: new Date(),
     },
     date: new Date(),
   };

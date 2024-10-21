@@ -1,13 +1,6 @@
 <div style="margin: 20px 0px">
   <h2 style="text-align: center">{{ title }}</h2>
   <div class="book-list-container">
-    <mat-card class="card" *ngFor="let book of books" (click)="logMessage()">
-      <img [src]="book.img" alt="{{ book.title }}" class="book-image" />
-      <div class="card-body">
-        <h5 class="book-title">{{ book.title }}</h5>
-        <p class="book-author">{{ book.author }}</p>
-        <p class="book-rating">Rating: {{ book.rating }} / 5</p>
-      </div>
-    </mat-card>
+    <book-card *ngFor="let book of books" [book]="book" />
   </div>
 </div>

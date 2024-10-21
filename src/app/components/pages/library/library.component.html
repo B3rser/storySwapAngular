@@ -1,1 +1,15 @@
-<p>library works!</p>
+<div style="display: flex; flex-direction: column; align-items: center">
+  <h1 style="font-weight: 400">Library</h1>
+  <div
+    *ngIf="books && books.length > 0; else emptyList"
+    class="library-list-container"
+  >
+    <!-- <-card *ngFor="let Item of Items" [Info]="Item" /> -->
+  </div>
+
+  <ng-template #emptyList>
+    <p>You don't have any books</p>
+  </ng-template>
+
+  <floating-btn [position]="fbtnPosition" (dataEmitter)="showAddDialog()"/>
+</div>

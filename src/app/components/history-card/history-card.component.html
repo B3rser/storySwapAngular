@@ -3,7 +3,7 @@
   <div class="card-body">
     <div class="book">
       <img
-        [src]="historyInfo.id_book1.img"
+        [src]="historyInfo.id_book1.image"
         alt="{{ historyInfo.id_book1.title }}"
         class="image"
       />
@@ -20,7 +20,7 @@
     </div>
     <div class="book" *ngIf="historyInfo.type === 'Swap'">
       <img
-        [src]="historyInfo.id_book2.img"
+        [src]="historyInfo.id_book2.image"
         alt="{{ historyInfo.id_book2.title }}"
         class="image"
       />

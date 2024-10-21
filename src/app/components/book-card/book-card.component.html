@@ -1,0 +1,8 @@
+<mat-card *ngIf="book" class="book-card" (click)="goToDetails()">
+  <img mat-card-image [src]="book.image" alt="{{ book.title }}" />
+  <mat-card-content>
+    <h3>{{ book.title }}</h3>
+    <p>{{ book.author }}</p>
+    <mat-icon *ngFor="let star of stars" class="mustard-star">star</mat-icon>
+  </mat-card-content>
+</mat-card>
