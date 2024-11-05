@@ -7,7 +7,7 @@
 /bazel-out
 
 # Node
-/node_modules
+storySwap_front/node_modules
 npm-debug.log
 yarn-error.log
 
@@ -29,13 +29,13 @@ yarn-error.log
 .history/*
 
 # Miscellaneous
-/.angular/cache
-.sass-cache/
-/connect.lock
-/coverage
-/libpeerconnection.log
-testem.log
-/typings
+storySwap_front/.angular
+storySwap_front/.sass-cache/
+storySwap_front/connect.lock
+storySwap_front//coverage
+storySwap_front//libpeerconnection.log
+storySwap_front/testem.log
+storySwap_front/typings
 
 # System files
 .DS_Store
