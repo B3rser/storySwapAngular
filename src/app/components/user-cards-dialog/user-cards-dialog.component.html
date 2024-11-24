@@ -1,0 +1,11 @@
+<div class="user-cards-container">
+  <h2>{{ data.actionType === 'buy' ? 'Users Selling This Book' : 'Users Swapping This Book' }}</h2>
+
+  <div *ngFor="let user of data.users" class="user-card-container">
+    <app-user-card
+      [user]="user"
+      (userClicked)="openPurchaseConfirmation(user, 'buy')"
+    ></app-user-card>
+  </div>
+  <button mat-button (click)="close()">Close</button>
+</div>

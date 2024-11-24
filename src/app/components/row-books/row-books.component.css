@@ -1,8 +1,8 @@
-.book-list-container {
+/*.book-list-container {
   width: 80vw;
   display: flex;
   gap: 20px;
-  /* justify-content: center; */
+  #justify-content: center; 
   white-space: nowrap;
   overflow-x: auto;
-}
+}*/

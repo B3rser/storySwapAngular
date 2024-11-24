@@ -12,7 +12,7 @@ import { FloatingBtnComponent } from "../../components/floating-btn/floating-btn
   styleUrl: './library.component.css'
 })
 export class LibraryComponent {
-  constructor(private titleService: Title){
+  /*constructor(private titleService: Title){
     this.titleService.setTitle("Library");
   }
   public fbtnPosition = {
@@ -23,5 +23,5 @@ export class LibraryComponent {
 
   public showAddDialog() {
     console.log("Hello")
-  }
+  }*/
 }

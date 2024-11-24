@@ -12,7 +12,7 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './wish-card.component.css',
 })
 export class WishCardComponent {
-  @Input()
+  /*@Input()
   public wishInfo: WishItem = {
     id: '',
     book: {
@@ -26,5 +26,5 @@ export class WishCardComponent {
       release_date: new Date(),
     },
     date: new Date(),
-  };
+  };*/
 }

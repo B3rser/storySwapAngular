@@ -13,7 +13,7 @@ import { Book } from '../../interfaces/book';
   styleUrl: './home.component.css',
 })
 export class HomeComponent {
-  constructor(private titleService: Title) {
+  /*constructor(private titleService: Title) {
     this.titleService.setTitle('Home');
   }
   public books: Book[] = [
@@ -182,5 +182,5 @@ export class HomeComponent {
       gender: '',
       release_date: new Date(),
     },
-  ];
+  ];*/
 }

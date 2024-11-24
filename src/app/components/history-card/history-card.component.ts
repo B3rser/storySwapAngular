@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { HistoryItem } from '../../interfaces/history-item';
+/*import { HistoryItem } from '../../interfaces/history-item';*/
 import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
@@ -13,8 +13,8 @@ import { NgIf } from '@angular/common';
   styleUrl: './history-card.component.css',
 })
 export class HistoryCardComponent {
-  @Input()
-  public historyInfo: HistoryItem = {
+  /*@Input()
+  /*public historyInfo: HistoryItem = {
     id: '',
     added_date: new Date(),
     id_book1: {
@@ -25,7 +25,7 @@ export class HistoryCardComponent {
       author: '',
       description: '',
       gender: '',
-      release_date: new Date(),
+      release_date: Number,
     },
     id_book2: {
       id: '',
@@ -35,7 +35,7 @@ export class HistoryCardComponent {
       author: '',
       description: '',
       gender: '',
-      release_date: new Date(),
+      release_date: Number,
     },
     id_user1: {
       id: '',
@@ -66,5 +66,5 @@ export class HistoryCardComponent {
       return 'Buy';
     }
     return 'Sale';
-  }
+  }*/
 }

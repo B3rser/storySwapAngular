@@ -6,7 +6,7 @@
       <h2 class = "title-details">{{ book.title }}</h2>
       <h3 class = "author-details">By: {{ book.author }}</h3>
       <p>{{ book.description }}</p>
-      <p>{{ book.release_date.getFullYear() }} <strong>release date</strong> </p>
+      <p>{{ book.release_date }} <strong>release date</strong> </p>
       <p>{{ book.gender }} <strong>genre</strong> </p>
       
       <p>
@@ -20,8 +20,8 @@
       </p>
 
       <div class="buttons-container">
-        <app-button label="Buy" type="buy"></app-button>
-        <app-button label="Swap" type="swap"></app-button>
+        <app-button label="Buy" type="buy" (action)="openUserCards($event)"></app-button>
+        <app-button label="Swap" type="swap" (action)="openUserCards($event)"></app-button>
         <app-button label="Add to wishlist" type="whishlist"></app-button>
       </div>
       

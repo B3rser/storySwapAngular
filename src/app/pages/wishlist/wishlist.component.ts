@@ -13,7 +13,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './wishlist.component.css',
 })
 export class WishlistComponent {
-  constructor(private titleService: Title) {
+  /*constructor(private titleService: Title) {
     this.titleService.setTitle('Wishlist');
   }
   wishItems: WishItem[] = [
@@ -59,5 +59,5 @@ export class WishlistComponent {
       },
       date: new Date(),
     },
-  ];
+  ];*/
 }

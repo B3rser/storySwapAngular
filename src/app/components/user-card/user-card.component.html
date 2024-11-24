@@ -1,0 +1,7 @@
+<div class="user-card" (click)="onCardClick()">
+  <p><strong>{{ user.name }} {{ user.last }}</strong></p>
+  <p>Condition: {{ user.condition }}</p>
+  <p *ngIf="user.cost">Price: ${{ user.cost }}</p>
+</div>
+
+

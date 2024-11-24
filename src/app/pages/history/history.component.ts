@@ -12,7 +12,7 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './history.component.css',
 })
 export class HistoryComponent {
-  constructor(private titleService: Title){
+  /*constructor(private titleService: Title){
     this.titleService.setTitle("History");
   }
 
@@ -116,5 +116,5 @@ export class HistoryComponent {
       },
       type: 'Swap',
     },
-  ];
+  ];*/
 }
