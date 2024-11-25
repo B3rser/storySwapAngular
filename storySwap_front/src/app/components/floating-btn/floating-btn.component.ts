@@ -1,33 +1,29 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output, OnInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
-import { MatIconModule } from '@angular/material/icon';
 
 @Component({
   selector: 'floating-btn',
   standalone: true,
-  imports: [MatIconModule, MatButtonModule],
+  imports: [MatButtonModule],
   templateUrl: './floating-btn.component.html',
   styleUrl: './floating-btn.component.css',
 })
-export class FloatingBtnComponent {
-  @Input()
-  public position = {};
-  @Output()
-  public dataEmitter = new EventEmitter();
+export class FloatingBtnComponent implements OnInit {
+  @Input() position: { [key: string]: string } = {};
+  @Output() dataEmitter = new EventEmitter();
 
-  btnStyle: { [key: string]: string };
-  constructor() {
+  btnStyle: { [key: string]: string } = {};
+
+  constructor() {}
+
+  ngOnInit() {
     this.btnStyle = {
-      position: 'fixed',
-      bottom: '10px',
-      right: '10px',
       ...this.position,
     };
+    console.log(this.position);
   }
 
   public clickAction() {
-    console.log(this.btnStyle);
-    console.log(this.position);
     this.dataEmitter.emit();
   }
 }

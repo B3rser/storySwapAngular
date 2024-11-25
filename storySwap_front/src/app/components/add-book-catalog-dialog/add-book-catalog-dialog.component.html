@@ -1,0 +1,56 @@
+<p-dialog
+  header="Add a new edition of the book"
+  [modal]="true"
+  [(visible)]="isVisible"
+  [style]="{ width: '30rem' }"
+  [dismissableMask]="true"
+>
+  <span class="p-text-secondary block mb-5">Update book details.</span>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="bookTitle" class="font-semibold w-6rem">Book Title</label>
+    <p-dropdown 
+      [options]="bookTitles" 
+      [(ngModel)]="selectedBookTitle" 
+      placeholder="Select a book"
+      class="flex-auto"
+      id="bookTitle"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="condition" class="font-semibold w-6rem">Condition</label>
+    <p-dropdown 
+      [options]="conditions" 
+      [(ngModel)]="selectedCondition" 
+      placeholder="Select condition"
+      class="flex-auto"
+      id="condition"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label class="font-semibold w-6rem">Type</label>
+    <p-radioButton name="type" label="For Sale" [(ngModel)]="type" value="For Sale" class="mr-2"></p-radioButton>
+    <p-radioButton name="type" label="For Swap" [(ngModel)]="type" value="For Swap"></p-radioButton>
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="cost" class="font-semibold w-6rem">Cost</label>
+    <input pInputText type="number" [(ngModel)]="cost" id="cost" class="flex-auto" />
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-5">
+    <label for="score" class="font-semibold w-6rem">Score</label>
+    <input pInputText type="number" [(ngModel)]="score" id="score" class="flex-auto" />
+  </div>
+
+  <div class="flex justify-content-end gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="closeDialog()" />
+    <p-button label="Add" (onClick)="addBook()" />
+  </div>
+</p-dialog>
+
+<floating-btn [position]="fbtnStyle" (dataEmitter)="showDialog()">
+  Add new book
+</floating-btn>

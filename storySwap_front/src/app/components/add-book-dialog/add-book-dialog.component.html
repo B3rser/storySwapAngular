@@ -1,0 +1,71 @@
+<p-dialog
+  header="Add a book to your library"
+  [modal]="true"
+  [(visible)]="isVisible"
+  [style]="{ width: '100%'}"
+  [dismissableMask]="true"
+  class="flex align-items gap-3 mb-3"
+>
+  <div class="card flex justify-content-center" >
+    <label for="bookTitle" class="font-bold w-6rem">Book Title</label>
+    <p-dropdown
+      [options]="bookTitles"
+      [(ngModel)]="selectedBookTitle"
+      placeholder="Select a book"
+      class="flex-auto"
+      id="bookTitle"
+    ></p-dropdown>
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="condition" class="font-semibold w-6rem">Condition</label>
+    <p-dropdown
+      [options]="conditions"
+      [(ngModel)]="selectedCondition"
+      placeholder="Select condition"
+      class="flex-auto"
+      id="condition"
+    ></p-dropdown>
+  </div>
+
+  <div class="card flex justify-content-center" style="display: flex; flex-direction: row; width: 100%;">
+    <label class="font-semibold w-6rem">Type</label>
+    <p-selectButton
+      [options]="selectionOptions"
+      [(ngModel)]="type"
+      optionLabel="label"
+      optionValue="value"
+    ></p-selectButton>
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-3">
+    <label for="cost" class="font-semibold w-6rem">Cost</label>
+    <input
+      pInputText
+      type="number"
+      [(ngModel)]="cost"
+      id="cost"
+      class="flex-auto"
+    />
+  </div>
+
+  <div class="flex align-items-center gap-3 mb-5">
+    <label for="score" class="font-semibold w-6rem">Score</label>
+    <input
+      pInputText
+      type="number"
+      [(ngModel)]="score"
+      id="score"
+      class="flex-auto"
+    />
+  </div>
+
+  <div class="flex justify-content-end gap-2">
+    <p-button label="Cancel" severity="secondary" (onClick)="closeDialog()" />
+    <p-button label="Add" (onClick)="addBook()" />
+  </div>
+</p-dialog>
+
+<floating-btn [position]="fbtnStyle" (dataEmitter)="showDialog()">
+  <mat-icon>add</mat-icon>
+</floating-btn>
