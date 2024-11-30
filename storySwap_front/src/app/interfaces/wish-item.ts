@@ -1,7 +1,5 @@
-import { Book } from "./book";
-
 export interface WishItem {
     id: string;
-    book: Book;
+    book: string;
     date: Date; 
 }

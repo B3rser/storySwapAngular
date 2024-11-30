@@ -1,0 +1,16 @@
+<div class="purchase-confirmation-container">
+  <h2>Confirm Purchase</h2>
+  <p><strong>Seller:</strong> {{ data.user.name }} {{ data.user.last }}</p>
+  <p><strong>Condition:</strong> {{ data.user.condition }}</p>
+
+  <h3>Select Payment Method:</h3>
+  <div *ngFor="let option of paymentOptions" class="payment-option">
+    <input type="radio" [value]="option" name="paymentMethod" [(ngModel)]="selectedPaymentMethod" />
+    <label>{{ option }}</label>
+  </div>
+
+  <div class="button-container">
+    <button mat-button color="primary" (click)="confirmPurchase()">Buy Now</button>
+    <button mat-button color="warn" (click)="closeDialog()">Cancel</button>
+  </div>
+</div>

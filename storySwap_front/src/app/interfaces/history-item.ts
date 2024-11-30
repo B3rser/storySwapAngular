@@ -1,12 +1,9 @@
-import { Book } from "./book";
-import { User } from "./user";
-
 export interface HistoryItem {
   id: string;
   added_date: Date;
-  id_book1: Book;
-  id_book2: Book;
-  id_user1: User;
-  id_user2: User;
+  id_book1: string;
+  id_book2: string;
+  id_user1: string;
+  id_user2: string;
   type: string;
 }

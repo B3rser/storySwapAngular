@@ -4,6 +4,8 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
 import { NgIf } from '@angular/common';
+import { Book } from '../../interfaces/book';
+import { User } from '../../interfaces/user';
 
 @Component({
   selector: 'history-card',
@@ -17,51 +19,30 @@ export class HistoryCardComponent {
   public historyInfo: HistoryItem = {
     id: '',
     added_date: new Date(),
-    id_book1: {
-      id: '',
-      title: '',
-      image: '',
-      score: -1,
-      author: '',
-      description: '',
-      gender: '',
-      release_date: new Date(),
-    },
-    id_book2: {
-      id: '',
-      title: '',
-      image: '',
-      score: -1,
-      author: '',
-      description: '',
-      gender: '',
-      release_date: new Date(),
-    },
-    id_user1: {
-      id: '',
-      name: '',
-    },
-    id_user2: {
-      id: '',
-      name: '',
-    },
+    id_book1: '',
+    id_book2: '',
+    id_user1: '',
+    id_user2: '',
     type: '',
   };
+
+  public books: Book[] = [];
+  public users: User[] = [];
 
   private currentUserID: String = '1';
 
   public getTitle(): String {
     if (
-      this.historyInfo.id_book1.id === '' ||
-      this.historyInfo.id_user1.id === '' ||
-      this.historyInfo.id_user2.id === ''
+      this.books[0].id === '' ||
+      this.users[0].id === '' ||
+      this.users[1].id === ''
     ) {
       return 'Something is wrong!!!!';
     }
     if (this.historyInfo.type === 'Swap') return 'Swap';
     if (
       this.historyInfo.type === 'Sale' &&
-      this.historyInfo.id_user2.id === this.currentUserID
+      this.users[1].id === this.currentUserID
     ) {
       return 'Buy';
     }

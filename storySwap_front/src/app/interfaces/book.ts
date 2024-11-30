@@ -5,6 +5,6 @@ export interface Book {
     description: string;
     gender: string;
     image: string;
-    release_date: Date;
+    release_date: number;
     score: number;
 }

@@ -1,9 +1,6 @@
 <div style="display: flex; flex-direction: column; align-items: center">
   <h1 style="font-weight: 400">History</h1>
-  <div
-    *ngIf="historyItems && historyItems.length > 0; else emptyList"
-    class="history-list-container"
-  >
+  <div *ngIf="historyItems && historyItems.length > 0; else emptyList" class="history-list-container">
     <history-card *ngFor="let historyItem of historyItems" [historyInfo]="historyItem" />
   </div>
 

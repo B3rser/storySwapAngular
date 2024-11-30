@@ -4,7 +4,7 @@
     *ngIf="books && books.length > 0; else emptyList"
     class="library-list-container"
   >
-    <!-- <-card *ngFor="let Item of Items" [Info]="Item" /> -->
+    <book-card *ngFor="let Item of books" [book]="Item" />
   </div>
 
   <ng-template #emptyList>

@@ -3,13 +3,13 @@
     <mat-icon>close</mat-icon>
   </button>
   <img
-    [src]="wishInfo.book.image"
-    alt="{{ wishInfo.book.title }}"
+    [src]="book.image"
+    alt="{{ book.title }}"
     class="book-image"
   />
   <div class="card-body">
-    <h5 class="book-title">{{ wishInfo.book.title }}</h5>
-    <p class="book-author">{{ wishInfo.book.author }}</p>
+    <h5 class="book-title">{{ book.title }}</h5>
+    <p class="book-author">{{ book.author }}</p>
     <p class="book-date">
       Performed on {{ wishInfo.date.getDate() }}/{{
         wishInfo.date.getMonth()
