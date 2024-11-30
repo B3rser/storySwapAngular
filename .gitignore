@@ -41,3 +41,5 @@ storySwap_front/typings
 # System files
 .DS_Store
 Thumbs.db
+
+storySwap_back/.env

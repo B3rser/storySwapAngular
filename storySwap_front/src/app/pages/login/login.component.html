@@ -1,0 +1,26 @@
+<div class="login-container">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()" class="login-form">
+    <h1 class="login-title">Welcome to StorySwap</h1>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>E-mail</mat-label>
+      <input matInput formControlName="email" type="email" />
+      <mat-error *ngIf="loginForm.get('email')?.invalid">Email inválido</mat-error>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="form-field">
+      <mat-label>Password</mat-label>
+      <input matInput formControlName="password" type="password" />
+      <mat-error *ngIf="loginForm.get('password')?.invalid">Contraseña inválida</mat-error>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">
+      Login
+    </button>
+
+    <div class="signup-redirect">
+      ¿No tienes cuenta? 
+      <a routerLink="/signup" class="signup-link">Regístrate</a>
+    </div>
+  </form>
+</div>
