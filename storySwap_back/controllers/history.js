@@ -1,18 +1,17 @@
 const { response, request } = require("express");
 const { HistoryRepository } = require("../repositories/history");
 
-const getAllHistorys = async (req = request, res = response) => {
-    const { searchTerm } = req.query;
+const getAllHistories = async (req = request, res = response) => {
     try {
-        const result = await HistoryRepository.getAll({ name: RegExp(searchTerm) }); 
+        const result = await HistoryRepository.getAll();
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los datos"
-        })
+        });
     }
-}
+};
 
 const getHistoryById = async (req = request, res = response) => {
     const { id } = req.params;
@@ -102,7 +101,7 @@ const updateHistory = async (req = request, res = response) => {
 }
 
 module.exports = {
-    getAllHistorys,
+    getAllHistories,
     createNewHistory,
     getHistoryById,
     deleteHistory,

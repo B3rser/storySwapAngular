@@ -2,8 +2,8 @@ const History = require("../models/history");
 const ObjectId = require("mongoose").Types.ObjectId
 
 class HistoryRepository {
-    static async getAll(query) {
-        return await History.find(query);
+    static async getAll() {
+        return await History.find();
     }
 
     static async getById(id) {

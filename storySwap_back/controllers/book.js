@@ -2,17 +2,29 @@ const { response, request } = require("express");
 const { BookRepository } = require("../repositories/book");
 
 const getAllBooks = async (req = request, res = response) => {
-    const { searchTerm } = req.query;
+    const queryFilters = {};
+    const { searchTerm, author, gender } = req.query;
+
+    if (searchTerm) {
+        queryFilters.title = new RegExp(searchTerm, 'i');
+    }
+    if (author) {
+        queryFilters.author = new RegExp(author, 'i');
+    }
+    if (gender) {
+        queryFilters.gender = new RegExp(gender, 'i');
+    }
+
     try {
-        const result = await BookRepository.getAll({ name: RegExp(searchTerm) });
+        const result = await BookRepository.getAll(queryFilters);
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los datos"
-        })
+        });
     }
-}
+};
 
 const getBookById = async (req = request, res = response) => {
     const { id } = req.params;
@@ -40,7 +52,6 @@ const createNewBook = async (req = request, res = response) => {
     if (!name || !year || !episodes || !image || !description || !genre) {
         res.status(400).json({
             msg: "Información Incompleta",
-            result: 12345
         });
         return;
     }
@@ -51,7 +62,6 @@ const createNewBook = async (req = request, res = response) => {
         console.log(error);
         res.status(500).json({
             msg: "Error al agregar el nuevo elemento",
-            result: 12345
         });
     }
 }
@@ -70,7 +80,6 @@ const deleteBook = async (req = request, res = response) => {
         console.log(error);
         res.status(500).json({
             msg: "Error al eliminar el elemento",
-            result: 12345
         });
     }
 }
@@ -96,7 +105,6 @@ const updateBook = async (req = request, res = response) => {
         console.log(error);
         res.status(500).json({
             msg: "Error al actualizar el nuevo elemento",
-            result: 12345
         });
     }
 }

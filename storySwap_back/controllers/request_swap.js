@@ -2,17 +2,16 @@ const { response, request } = require("express");
 const { RequestSwapRepository } = require("../repositories/request_swap");
 
 const getAllRequestSwaps = async (req = request, res = response) => {
-    const { searchTerm } = req.query;
     try {
-        const result = await RequestSwapRepository.getAll({ name: RegExp(searchTerm) });
+        const result = await RequestSwapRepository.getAll();
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los datos"
-        })
+        });
     }
-}
+};
 
 const getRequestSwapById = async (req = request, res = response) => {
     const { id } = req.params;

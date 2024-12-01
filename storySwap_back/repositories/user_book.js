@@ -2,8 +2,8 @@ const UserBook = require("../models/user_book");
 const ObjectId = require("mongoose").Types.ObjectId
 
 class UserBookRepository {
-    static async getAll(query) {
-        return await UserBook.find(query);
+    static async getAll() {
+        return await UserBook.find();
     }
 
     static async getById(id) {

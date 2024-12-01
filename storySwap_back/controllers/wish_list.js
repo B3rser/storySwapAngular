@@ -2,17 +2,27 @@ const { response, request } = require("express");
 const { WishListRepository } = require("../repositories/wish_list");
 
 const getAllWishLists = async (req = request, res = response) => {
-    const { searchTerm } = req.query;
+    const queryFilters = {};
+    const { bookId, userId } = req.query;
+
+    if (bookId) {
+        queryFilters.id_book = bookId;
+    }
+    if (userId) {
+        queryFilters.id_user = userId;
+    }
+
     try {
-        const result = await WishListRepository.getAll({ name: RegExp(searchTerm) });
+        const result = await WishListRepository.getAll(queryFilters);
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los datos"
-        })
+        });
     }
-}
+};
+
 
 const getWishListById = async (req = request, res = response) => {
     const { id } = req.params;

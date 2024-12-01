@@ -10,4 +10,4 @@ const userBookSchema = mongoose.Schema({
     type: String
 });
 
-module.exports = mongoose.model("UserBook", userBookSchema);
+module.exports = mongoose.model("User_Book", userBookSchema);

@@ -2,17 +2,28 @@ const { response, request } = require("express");
 const { UserRepository } = require("../repositories/user");
 
 const getAllUsers = async (req = request, res = response) => {
-    const { searchTerm } = req.query;
+    const queryFilters = {};
+    const { searchTerm, state } = req.query;
+
+    if (searchTerm) {
+        queryFilters.email = new RegExp(searchTerm, 'i');
+        queryFilters.name = new RegExp(searchTerm, 'i');
+    }
+    if (state) {
+        queryFilters.state = new RegExp(state, 'i');
+    }
+
     try {
-        const result = await UserRepository.getAll({ name: RegExp(searchTerm) });
+        const result = await UserRepository.getAll(queryFilters);
         res.status(200).json(result);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
             msg: "Error al obtener los datos"
-        })
+        });
     }
-}
+};
+
 
 const getUserById = async (req = request, res = response) => {
     const { id } = req.params;

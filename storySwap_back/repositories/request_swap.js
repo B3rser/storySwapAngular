@@ -2,8 +2,8 @@ const RequestSwap = require("../models/request_swap");
 const ObjectId = require("mongoose").Types.ObjectId
 
 class RequestSwapRepository {
-    static async getAll(query) {
-        return await RequestSwap.find(query);
+    static async getAll() {
+        return await RequestSwap.find();
     }
 
     static async getById(id) {

@@ -11,13 +11,13 @@ class Server {
                 process.env.FRONTEND_URL
             ]
         };
-        // this.bookPath = "/api/book";
-        // this.historyPath = "/api/history";
-        // this.requestSwapPath = "/api/request_swap";
-        // this.userBookPath = "/api/user_book";
-        // this.userPath = "/api/user";
-        // this.wishListPath = "/api/wish_list";
-        // this.authPath = "/api/auth";
+        this.bookPath = "/api/book";
+        this.historyPath = "/api/history";
+        this.requestSwapPath = "/api/request_swap";
+        this.userBookPath = "/api/user_book";
+        this.userPath = "/api/user";
+        this.wishListPath = "/api/wish_list";
+        this.authPath = "/api/auth";
 
         this.middlewares();
         this.routes()
@@ -25,12 +25,12 @@ class Server {
     }
 
     routes() {
-        // this.app.use(this.bookPath, require("../routes/book"));
-        // this.app.use(this.historyPath, require("../routes/history"));
-        // this.app.use(this.requestSwapPath, require("../routes/request_swap"));
-        // this.app.use(this.userBookPath, require("../routes/user_book"));
-        // this.app.use(this.userPath, require("../routes/user"));
-        // this.app.use(this.wishListPath, require("../routes/wish_list"));
+        this.app.use(this.bookPath, require("../routes/book"));
+        this.app.use(this.historyPath, require("../routes/history"));
+        this.app.use(this.requestSwapPath, require("../routes/request_swap"));
+        this.app.use(this.userBookPath, require("../routes/user_book"));
+        this.app.use(this.userPath, require("../routes/user"));
+        this.app.use(this.wishListPath, require("../routes/wish_list"));
         // this.app.use(this.authPath, require("../routes/auth"));
 
         this.app.get("*", function (req, res) {

@@ -12,4 +12,4 @@ const requestSwapSchema = mongoose.Schema({
     user2: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
-module.exports = mongoose.model("RequestSwap", requestSwapSchema);
+module.exports = mongoose.model("Request_Swap", requestSwapSchema);

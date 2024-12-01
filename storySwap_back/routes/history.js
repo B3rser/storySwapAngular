@@ -1,8 +1,8 @@
 const { Router } = require('express');
-const { getAllHistorys, createNewHistory, getHistoryById, deleteHistory, updateHistory } = require('../controllers/history');
+const { createNewHistory, getHistoryById, deleteHistory, updateHistory, getAllHistories } = require('../controllers/history');
 const router = Router();
 
-router.get("/", getAllHistorys);
+router.get("/", getAllHistories);
 router.post("/", createNewHistory);
 router.get("/:id", getHistoryById);
 router.delete("/:id", deleteHistory);
