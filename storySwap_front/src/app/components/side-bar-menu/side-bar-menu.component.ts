@@ -4,6 +4,8 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
 import { NavBarMenuComponent } from '../nav-bar-menu/nav-bar-menu.component';
 import { MatIconModule } from '@angular/material/icon';
+import { DialogNotiComponent } from '../dialog-noti/dialog-noti.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'side-bar-menu',
@@ -29,4 +31,12 @@ export class SideBarMenuComponent {
   };
 
   showFiller = false;
+
+  constructor(private dialog: MatDialog) {}
+
+  openNotifications() {
+    this.dialog.open(DialogNotiComponent, {
+      width: '400px',
+    });
+  }
 }

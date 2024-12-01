@@ -9,6 +9,7 @@ import { ItemsComponent } from './pages/items/items.component';
 import { BookDetailsComponent } from './pages/book-details/book-details.component';
 import { LoginComponent } from './pages/login/login.component';
 import { SignupComponent } from './pages/signup/signup.component';
+import { SwapTwoComponent } from './pages/swap-two/swap-two.component';
 
 export const routes: Routes = [
     { path: 'home',component: HomeComponent},
@@ -22,6 +23,7 @@ export const routes: Routes = [
     { path: 'not-found', component: NotFoundComponent },
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignupComponent },
+    { path: 'swap-two', component: SwapTwoComponent },
     { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
     
 ];

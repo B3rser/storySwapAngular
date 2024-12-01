@@ -1,0 +1,11 @@
+<mat-card>
+    <mat-card-header>
+      <mat-card-title>{{ senderName }}</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p *ngIf="type === 1">Solicitud de intercambio</p>
+      <p *ngIf="type === 2">Estado de solicitud</p>
+      <p *ngIf="type === 3">Estado de intercambio</p>
+    </mat-card-content>
+  </mat-card>
+  
