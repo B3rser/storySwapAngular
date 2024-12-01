@@ -7,6 +7,8 @@ import { LibraryComponent } from './pages/library/library.component';
 import { WishlistComponent } from './pages/wishlist/wishlist.component';
 import { ItemsComponent } from './pages/items/items.component';
 import { BookDetailsComponent } from './pages/book-details/book-details.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignupComponent } from './pages/signup/signup.component';
 
 export const routes: Routes = [
     { path: 'home',component: HomeComponent},
@@ -18,5 +20,8 @@ export const routes: Routes = [
     { path: 'items', component: ItemsComponent },
     { path: 'book-details/:title', component: BookDetailsComponent },
     { path: 'not-found', component: NotFoundComponent },
+    { path: 'login', component: LoginComponent},
+    { path: 'signup', component: SignupComponent },
     { path: '**', redirectTo: 'not-found', pathMatch: 'full' },
+    
 ];

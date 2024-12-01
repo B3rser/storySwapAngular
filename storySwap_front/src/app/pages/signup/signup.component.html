@@ -1,0 +1,36 @@
+<div class="signup-container">
+    <form [formGroup]="signupForm" (ngSubmit)="onSubmit()" class="signup-form">
+      <h1 class="signup-title">Welcome to StorySwap</h1>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Name</mat-label>
+        <input matInput formControlName="name" type="text" />
+        <mat-error *ngIf="signupForm.get('name')?.invalid">Nombre es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Last</mat-label>
+        <input matInput formControlName="lastName" type="text" />
+        <mat-error *ngIf="signupForm.get('lastName')?.invalid">Apellido es requerido</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>E-mail</mat-label>
+        <input matInput formControlName="email" type="email" />
+        <mat-error *ngIf="signupForm.get('email')?.invalid">Email inválido</mat-error>
+      </mat-form-field>
+   
+      <mat-form-field appearance="fill" class="form-field">
+        <mat-label>Password</mat-label>
+        <input matInput formControlName="password" type="password" />
+        <mat-error *ngIf="signupForm.get('password')?.invalid">
+          Contraseña debe tener al menos 6 caracteres
+        </mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" type="submit" [disabled]="signupForm.invalid">
+        Registrarse
+      </button>
+    </form>
+  </div>
+  
