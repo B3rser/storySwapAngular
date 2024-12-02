@@ -8,7 +8,7 @@ class Server {
         this.app = express();
         this.corsoptions = {
             origin: [
-                process.env.FRONTEND_URL
+                process.env.FRONTEND_URL,
             ]
         };
         this.bookPath = "/api/book";

@@ -18,7 +18,7 @@ export const routes: Routes = [
     { path: 'library',component: LibraryComponent},
     { path: 'wishlist',component: WishlistComponent},
     { path: 'items', component: ItemsComponent },
-    { path: 'book-details/:title', component: BookDetailsComponent },
+    { path: 'book-details/:id', component: BookDetailsComponent },
     { path: 'not-found', component: NotFoundComponent },
     { path: 'login', component: LoginComponent},
     { path: 'signup', component: SignupComponent },

@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { WishItem } from '../../interfaces/wish-item';
 import { MatCardModule } from '@angular/material/card';
 import { NgFor, NgIf } from '@angular/common';
 import { WishCardComponent } from '../../components/wish-card/wish-card.component';
 import { Title } from '@angular/platform-browser';
+import { WishItemService } from '../../services/wish-list.service';
 
 @Component({
   selector: 'wishlist',
@@ -13,24 +14,22 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './wishlist.component.css',
 })
 export class WishlistComponent {
+  private wishItemService = inject(WishItemService);
+
   constructor(private titleService: Title) {
     this.titleService.setTitle('Wishlist');
   }
-  wishItems: WishItem[] = [
-    {
-      id: '1',
-      book: "",
-      date: new Date(),
-    },
-    {
-      id: '2',
-      book: "",
-      date: new Date(),
-    },
-    {
-      id: '3',
-      book: "",
-      date: new Date(),
-    },
-  ];
+
+  public get wishItems(): WishItem[] {
+    return this.wishItemService.wishItems;
+  }
+
+  public addToWishlist(wishData: WishItem) {
+    
+    this.wishItemService.addWishItem(wishData);
+  }
+
+  public removeFromWishlist(id: string){
+    this.wishItemService.deleteWishItem(id);
+  }
 }

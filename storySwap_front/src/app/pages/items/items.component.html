@@ -3,5 +3,5 @@
 <app-filter-genres (genreSelected)="onGenreSelected($event)"></app-filter-genres>
 
 <div class="book-list">
-  <app-book *ngFor="let book of filteredBooks" [book]="book"></app-book>
+  <app-book *ngFor="let book of books" [book]="book"></app-book>
 </div>

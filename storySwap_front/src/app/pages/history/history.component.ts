@@ -1,8 +1,9 @@
 import { NgFor, NgIf } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
 import { HistoryItem } from '../../interfaces/history-item';
 import { HistoryCardComponent } from '../../components/history-card/history-card.component';
 import { Title } from '@angular/platform-browser';
+import { HistoryService } from '../../services/history.service';
 
 @Component({
   selector: 'history',
@@ -12,37 +13,14 @@ import { Title } from '@angular/platform-browser';
   styleUrl: './history.component.css',
 })
 export class HistoryComponent {
+  private HistoryService = inject(HistoryService)
+
   constructor(private titleService: Title) {
     this.titleService.setTitle("History");
+    this.HistoryService.fetchHistory();
   }
 
-  public historyItems: HistoryItem[] = [
-    {
-      id: '1',
-      added_date: new Date(),
-      id_book1: "",
-      id_book2: "",
-      id_user1: "",
-      id_user2: "",
-      type: 'Sale',
-    },
-    {
-      id: '3',
-      added_date: new Date(),
-      id_book1: "",
-      id_book2: "",
-      id_user1: "",
-      id_user2: "",
-      type: 'Sale',
-    },
-    {
-      id: '2',
-      added_date: new Date(),
-      id_book1: "",
-      id_book2: "",
-      id_user1: "",
-      id_user2: "",
-      type: 'Swap',
-    },
-  ];
+  public get historyItems(): HistoryItem[] {
+    return this.HistoryService.historyItems;
+  }
 }

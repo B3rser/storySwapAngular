@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { Component, inject, OnInit } from '@angular/core';
 import { Book } from '../../interfaces/book';
 import { BookComponent } from '../../components/book/book.component';
 import { NgFor } from '@angular/common';
-import { BOOKS } from '../../books';
 import { FilterGenresComponent } from '../../components/filter-genres/filter-genres.component';
+import { BookService } from '../../services/book.service';
+import { Title } from '@angular/platform-browser';
 
 
 @Component({
@@ -16,15 +16,20 @@ import { FilterGenresComponent } from '../../components/filter-genres/filter-gen
 })
 
 export class ItemsComponent implements OnInit {
+  private BookService = inject(BookService)
 
-  books: Book[] = BOOKS; 
-  filteredBooks: Book[] = BOOKS; 
-
-  constructor() {}
+  constructor(private titleService: Title) {
+    this.titleService.setTitle('Search');
+    this.BookService.fetchBooks();
+  }
 
   ngOnInit(): void {}
 
-  onGenreSelected(genre: string) {
-    this.filteredBooks = this.books.filter(book => book.gender === genre);
+  public get books(): Book[] {
+    return this.BookService.books;
+  }
+
+  public onGenreSelected(genre: string) {
+    return this.BookService.filterByGenre(genre);
   }
 }

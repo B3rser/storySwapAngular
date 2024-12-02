@@ -26,6 +26,7 @@ export class BookComponent implements OnInit {
   }
 
   goToDetails() {
-    this.router.navigate(['/book-details', this.book.title]);
+    console.log(this.book)
+    this.router.navigate(['/book-details', this.book.id]);
   }
 }

@@ -1,42 +1,61 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '../interfaces/book';
-//import { environment } from '../../environments/environment'; // Ruta puede variar
+import { Observable, Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class BookService {
-  private apiUrl = "/api/book";
-
-  private _books: Book[] = []; 
-
-  constructor(private http: HttpClient) {}
+  private http = inject(HttpClient);
+  private apiUrl = "http://localhost:8080/api/book";
+  private _books: Book[] = [];
+  private _filterBooks: Book[] = [];
+  constructor() { }
 
   get books(): Book[] {
-    return this._books;
+    return this._filterBooks;
   }
 
   public fetchBooks(): void {
     this.http.get<Book[]>(this.apiUrl).subscribe({
       next: (response) => {
-        console.log('Libros obtenidos:', response);
-        this._books = response; 
+        console.log('Books fetched:', response);
+        this._books = response;
+        this._filterBooks = response;
       },
       error: (error) => {
-        console.error('Error al obtener libros:', error);
+        console.error('Error fetching books:', error);
       },
     });
+  }
+
+  public getBookById(id: string): Observable<Book> {
+    const subject = new Subject<Book>();
+
+    this.http.get<Book>(`${this.apiUrl}/${id}`).subscribe({
+      next: (response) => {
+        subject.next(response);
+        subject.complete();
+      },
+      error: (error) => {
+        console.error('Error fetching book:', error);
+        subject.error(error);
+      },
+    });
+
+    return subject.asObservable();
   }
 
   public addBook(book: Book): void {
     this.http.post<Book>(this.apiUrl, book).subscribe({
       next: (response) => {
-        console.log('Libro agregado:', response);
-        this._books.push(response); 
+        console.log('Book added:', response);
+        this._books.push(response);
+        this._filterBooks = this._books;
       },
       error: (error) => {
-        console.error('Error al agregar libro:', error);
+        console.error('Error adding book:', error);
       },
     });
   }
@@ -44,14 +63,15 @@ export class BookService {
   public updateBook(id: string, updatedBook: Book): void {
     this.http.put<Book>(`${this.apiUrl}/${id}`, updatedBook).subscribe({
       next: (response) => {
-        console.log('Libro actualizado:', response);
-        const index = this._books.findIndex((book) => book.id === id); 
+        console.log('Book updated:', response);
+        const index = this._books.findIndex((book) => book.id === id);
         if (index > -1) {
-          this._books[index] = response; 
+          this._books[index] = response;
         }
+        this._filterBooks = this._books;
       },
       error: (error) => {
-        console.error('Error al actualizar libro:', error);
+        console.error('Error updating book:', error);
       },
     });
   }
@@ -59,12 +79,17 @@ export class BookService {
   public deleteBook(id: string): void {
     this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
-        console.log('Libro eliminado');
-        this._books = this._books.filter((book) => book.id !== id); 
+        console.log('Book deleted');
+        this._books = this._books.filter((book) => book.id !== id);
+        this._filterBooks = this._books;
       },
       error: (error) => {
-        console.error('Error al eliminar libro:', error);
+        console.error('Error deleting book:', error);
       },
     });
+  }
+
+  public filterByGenre(genre: string) {
+    this._filterBooks = this._books.filter(book => book.gender === genre);
   }
 }
