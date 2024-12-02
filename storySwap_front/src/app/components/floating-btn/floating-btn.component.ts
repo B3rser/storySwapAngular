@@ -20,7 +20,6 @@ export class FloatingBtnComponent implements OnInit {
     this.btnStyle = {
       ...this.position,
     };
-    console.log(this.position);
   }
 
   public clickAction() {

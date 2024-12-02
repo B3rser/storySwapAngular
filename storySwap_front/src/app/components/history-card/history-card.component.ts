@@ -33,16 +33,16 @@ export class HistoryCardComponent {
 
   public getTitle(): String {
     if (
-      this.books[0].id === '' ||
-      this.users[0].id === '' ||
-      this.users[1].id === ''
+      this.books[0]._id === '' ||
+      this.users[0]._id === '' ||
+      this.users[1]._id === ''
     ) {
       return 'Something is wrong!!!!';
     }
     if (this.historyInfo.type === 'Swap') return 'Swap';
     if (
       this.historyInfo.type === 'Sale' &&
-      this.users[1].id === this.currentUserID
+      this.users[1]._id === this.currentUserID
     ) {
       return 'Buy';
     }

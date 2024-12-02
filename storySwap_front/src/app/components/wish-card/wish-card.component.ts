@@ -21,7 +21,7 @@ export class WishCardComponent {
   };
 
   public book: Book = {
-    id: '',
+    _id: '',
     author: '',
     title: 'string',
     description: '',

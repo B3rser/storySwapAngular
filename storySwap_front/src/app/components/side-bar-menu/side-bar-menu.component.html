@@ -1,10 +1,7 @@
 <mat-drawer-container class="container" autosize>
   <div>
     <nav-bar-menu></nav-bar-menu>
-    <button
-      type="button"
-      class="toggleButton"
-      style="
+    <button  type="button" class="toggleButton" style="
         position: fixed;
         top: 50%;
         left: 10px;
@@ -15,9 +12,7 @@
         cursor: pointer;
         margin-right: 10px;
         border-radius: 5px;
-      "
-      (click)="drawer.toggle()"
-    ></button>
+      " (click)="drawer.toggle()"></button>
     <router-outlet></router-outlet>
   </div>
   <mat-drawer #drawer class="sidenav" mode="over">
@@ -35,28 +30,13 @@
     <hr />
     <h4>Account</h4>
     <div>
-      <button
-        mat-button
-        [style]="buttonMenu"
-        [routerLink]="['/wishlist']"
-        routerLinkActive="router-link-active"
-      >
+      <button mat-button [style]="buttonMenu" [routerLink]="['/wishlist']" routerLinkActive="router-link-active">
         Wishlist
       </button>
-      <button
-        [style]="buttonMenu"
-        mat-button
-        [routerLink]="['/history']"
-        routerLinkActive="router-link-active"
-      >
+      <button [style]="buttonMenu" mat-button [routerLink]="['/history']" routerLinkActive="router-link-active">
         History
       </button>
-      <button
-        [style]="buttonMenu"
-        mat-button
-        [routerLink]="['/library']"
-        routerLinkActive="router-link-active"
-      >
+      <button [style]="buttonMenu" mat-button [routerLink]="['/library']" routerLinkActive="router-link-active">
         Library
       </button>
     </div>
@@ -71,7 +51,7 @@
       <button [style]="buttonMenu" mat-button>English</button>
       <button [style]="buttonMenu" mat-button>Mexico</button>
       <button [style]="buttonMenu" mat-button>Customer Service</button>
-      <button [style]="buttonMenu" mat-button>Sign Out</button>
+      <button [style]="buttonMenu" mat-button (click)="logout()">Sign Out</button>
     </div>
   </mat-drawer>
 </mat-drawer-container>

@@ -6,6 +6,10 @@ class UserRepository {
         return await User.find(query);
     }
 
+    static async getOne(query) {
+        return await User.findOne(query);
+    }
+
     static async getById(id) {
         if (!ObjectId.isValid(id)) {
             return null;

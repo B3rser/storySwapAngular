@@ -31,6 +31,11 @@ class BookRepository {
         }
         return await Book.updateOne({ _id: id }, updateData)
     }
+
+    static async getDistinctGenres() {
+        const genres = await Book.distinct('gender');
+        return genres;
+    };
 }
 
 module.exports = { BookRepository }

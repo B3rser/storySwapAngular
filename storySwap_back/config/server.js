@@ -31,7 +31,7 @@ class Server {
         this.app.use(this.userBookPath, require("../routes/user_book"));
         this.app.use(this.userPath, require("../routes/user"));
         this.app.use(this.wishListPath, require("../routes/wish_list"));
-        // this.app.use(this.authPath, require("../routes/auth"));
+        this.app.use(this.authPath, require("../routes/auth"));
 
         this.app.get("*", function (req, res) {
             res.status(404).json({

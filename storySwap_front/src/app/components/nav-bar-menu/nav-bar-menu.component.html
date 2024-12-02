@@ -1,49 +1,25 @@
 <nav class="navbar">
-  <button
-    mat-icon-button
-    [routerLink]="['/home']"
-    routerLinkActive="router-link-active"
-    style="height: 60px; width: 60px"
-    Tamaño
-    del
-    botón
-  >
+  <button mat-icon-button [routerLink]="['/home']" routerLinkActive="router-link-active"
+    style="height: 60px; width: 60px" Tamaño del botón>
     <img src="assets/iconwo.png" style="height: 40px; width: 40px" alt="Logo" />
   </button>
   <div>
-    <button
-      mat-button
-      style="font-size: x-large; color: black; font-weight: 400"
-      [routerLink]="['/items']"
-      routerLinkActive="router-link-active"
-    >
+    <button mat-button style="font-size: x-large; color: black; font-weight: 400" [routerLink]="['/items']"
+      routerLinkActive="router-link-active">
       Items
     </button>
-    <button
-      mat-button
-      style="font-size: x-large; color: black; font-weight: 400"
-      [routerLink]="['/events']"
-      routerLinkActive="router-link-active"
-    >
+    <button mat-button style="font-size: x-large; color: black; font-weight: 400" [routerLink]="['/events']"
+      routerLinkActive="router-link-active">
       Events
     </button>
   </div>
   <div style="display: flex; flex-direction: row">
     <div class="search-box">
       <mat-icon fontIcon="search"></mat-icon>
-      <input
-        style="margin-left: 5px"
-        type="text"
-        placeholder="Search"
-        class="search-input"
-      />
+      <input style="margin-left: 5px" type="text" placeholder="Search" class="search-input" />
     </div>
-    <button
-      mat-button
-      style="font-size: x-large; color: black; font-weight: 400"
-      [routerLink]="['/login']"
-      routerLinkActive="router-link-active"
-    >
+    <button *ngIf="!(loggedIn$ | async)" mat-button style="font-size: x-large; color: black; font-weight: 400"
+      [routerLink]="['/login']" routerLinkActive="router-link-active">
       Login
     </button>
   </div>

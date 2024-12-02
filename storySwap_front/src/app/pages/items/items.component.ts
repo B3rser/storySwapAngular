@@ -1,16 +1,16 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { Book } from '../../interfaces/book';
-import { BookComponent } from '../../components/book/book.component';
 import { NgFor } from '@angular/common';
 import { FilterGenresComponent } from '../../components/filter-genres/filter-genres.component';
 import { BookService } from '../../services/book.service';
 import { Title } from '@angular/platform-browser';
+import { BookCardComponent } from "../../components/book-card/book-card.component";
 
 
 @Component({
   selector: 'app-items',
   standalone: true,
-  imports: [BookComponent, NgFor, FilterGenresComponent],
+  imports: [NgFor, FilterGenresComponent, BookCardComponent],
   templateUrl: './items.component.html',
   styleUrl: './items.component.css'
 })

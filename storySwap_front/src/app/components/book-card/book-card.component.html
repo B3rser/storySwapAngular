@@ -1,4 +1,4 @@
-<mat-card *ngIf="book" class="book-card" (click)="goToDetails()">
+<mat-card *ngIf="book" class="book-card" [routerLink]="['/book-details', book._id]" routerLinkActive="router-link-active">
   <img mat-card-image [src]="book.image" alt="{{ book.title }}" />
   <mat-card-content>
     <h3>{{ book.title }}</h3>

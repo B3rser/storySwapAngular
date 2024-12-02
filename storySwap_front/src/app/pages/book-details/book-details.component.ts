@@ -22,7 +22,7 @@ import { AuthService } from '../../services/auth.service';
 
 export class BookDetailsComponent implements OnInit {
   public book: Book = {
-    id: '',
+    _id: '',
     author: '',
     title: '',
     description: '',
