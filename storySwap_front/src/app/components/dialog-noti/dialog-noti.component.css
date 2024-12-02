@@ -1,0 +1,11 @@
+h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #3E5C76;
+  }
+  
+  mat-dialog-content {
+    max-height: 400px;
+    overflow-y: auto;
+  }
+  

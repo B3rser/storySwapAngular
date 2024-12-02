@@ -1,0 +1,11 @@
+<div mat-dialog-content>
+  <h2>Notificaciones</h2>
+  <div *ngFor="let notification of notifications" style="margin-bottom: 10px;">
+    <app-noti-card
+      [type]="notification.type"
+      [senderName]="notification.user"
+      (click)="onNotificationClick(notification)"
+      style="cursor: pointer;"
+    ></app-noti-card>
+  </div>
+</div>
