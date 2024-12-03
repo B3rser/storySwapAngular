@@ -1,0 +1,78 @@
+.user-card {
+    width: 65vw;
+    margin: 10px 0;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0px 10px 20px 10px;
+}
+
+.mat-card-header,
+.mat-card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    margin-right: 16px;
+}
+
+.mat-card-title {
+    font-size: 1.2rem;
+    font-weight: 500;
+}
+
+.mat-card-subtitle {
+    font-size: 1rem;
+    color: #666;
+}
+
+.mat-card-content {
+    font-size: 1rem;
+    color: #333;
+}
+
+.mat-card-actions {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 12px;
+}
+
+.action-buttons {
+    display: flex;
+    gap: 12px;
+}
+
+.action-button {
+    background-color: #fff;
+    border-radius: 50%;
+    padding: 8px;
+    border: 0;
+    transition: background-color 0.3s ease;
+}
+
+.action-button:hover {
+    background-color: #e0e0e0;
+}
+
+.delete-button {
+    color: #d32f2f;
+}
+
+.delete-button:hover {
+    background-color: #ffcccc;
+}
+
+button.mat-icon-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+button.mat-icon-button .material-icons {
+    font-size: 24px;
+    color: inherit;
+}

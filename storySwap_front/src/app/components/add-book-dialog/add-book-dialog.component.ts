@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, inject, input, Input, OnInit } from '@angular/core';
 import { FloatingBtnComponent } from '../floating-btn/floating-btn.component';
 import { MatIconModule } from '@angular/material/icon';
 import { DialogModule } from 'primeng/dialog';
@@ -8,6 +8,11 @@ import { InputNumberModule } from 'primeng/inputnumber';
 import { DropdownModule } from 'primeng/dropdown';
 import { SelectButtonModule } from 'primeng/selectbutton';
 import { FormsModule } from '@angular/forms';
+import { BookService } from '../../services/book.service';
+import { BookUser } from '../../interfaces/book-user';
+import { AuthService } from '../../services/auth.service';
+import { BookUserService } from '../../services/user-book.service';
+import { Book } from '../../interfaces/book';
 
 @Component({
   selector: 'add-book-dialog',
@@ -26,23 +31,39 @@ import { FormsModule } from '@angular/forms';
   templateUrl: './add-book-dialog.component.html',
   styleUrl: './add-book-dialog.component.css',
 })
-export class AddBookDialogComponent {
-  public isVisible: boolean = true;
-
-  bookTitles = [
-    { label: 'Book 1', value: 'Book 1' },
-    { label: 'Book 2', value: 'Book 2' },
-    { label: 'Book 3', value: 'Book 3' },
-  ];
+export class AddBookDialogComponent implements OnInit {
+  @Input()
+  public bookService: BookService = inject(BookService);
+  @Input()
+  public userbookService: BookUserService = inject(BookUserService);
+  @Input()
+  public authService: AuthService = inject(AuthService);
 
   conditions = [
-    { label: 'New', value: 'New' },
     { label: 'Good', value: 'Good' },
     { label: 'Fair', value: 'Fair' },
     { label: 'Poor', value: 'Poor' },
   ];
 
-  public selectionOptions = [{ label: 'For Sale', value: 'sale' },{ label: 'For Swap', value: 'swap' }]
+  public bookTitles: { label: string; value: string; }[] = [];
+  public isVisible: boolean = false;
+
+  constructor() {
+    this.bookService.books.forEach((book: Book) => {
+      var temp = { label: book.title, value: book._id }
+      this.bookTitles.push(temp)
+    });
+  }
+
+  ngOnInit(): void {
+    this.bookService.books.forEach((book: Book) => {
+      var temp = { label: book.title, value: book._id }
+      this.bookTitles.push(temp)
+    });
+    console.log(this.bookService.books)
+  }
+
+  public selectionOptions = [{ label: 'For Sale', value: 'sale' }, { label: 'For Swap', value: 'swap' }]
 
   selectedBookTitle: string = '';
   selectedCondition: string = '';
@@ -57,21 +78,29 @@ export class AddBookDialogComponent {
   };
 
   addBook() {
-    const bookDetails = {
-      title: this.selectedBookTitle,
+    const bookDetails: BookUser = {
+      _id: "",
+      add_date: new Date(),
+      id_book: this.selectedBookTitle,
+      id_user: this.authService.getUser()._id,
+      state: "",
       condition: this.selectedCondition,
       type: this.type,
       cost: this.cost,
-      score: this.score,
+      // score: this.score,
     };
 
     console.log('Book Details:', bookDetails);
-
+    this.userbookService.addBookUser(bookDetails);
     this.closeDialog();
+
+    console.log(this.bookService.books)
   }
 
   public showDialog() {
     this.isVisible = true;
+    console.log(this.authService.getUser()._id)
+    
   }
 
   public closeDialog() {

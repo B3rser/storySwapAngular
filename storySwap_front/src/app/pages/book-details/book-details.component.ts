@@ -12,6 +12,7 @@ import { BookUserService } from '../../services/user-book.service';
 import { WishItemService } from '../../services/wish-list.service';
 import { AuthService } from '../../services/auth.service';
 import { WishItem } from '../../interfaces/wish-item';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-book-details',
@@ -46,6 +47,7 @@ export class BookDetailsComponent implements OnInit {
   private bookUserService = inject(BookUserService);
   private wishItemService = inject(WishItemService);
   private authService = inject(AuthService);
+  private userService = inject(UserService);
   public isInWishlist = false;
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog) {
@@ -78,34 +80,32 @@ export class BookDetailsComponent implements OnInit {
         },
       });
     }
+    this.authService.load_user()
   }
 
   openUserCards(actionType: string) {
     const title = actionType === 'buy' ? 'Users Selling This Book' : 'Users Swapping This Book';
 
-    // Filtrar transacciones según el tipo de acción
-    // const bookTransactions = BOOKUSER.filter(
-    //   transaction => transaction.id_book === this.book.id && transaction.type === actionType
-    // );
+    const bookTransactions = this.bookUserService.bookUsers.filter(
+      transaction => transaction.id_book === this.book._id && transaction.type === actionType
+    );
 
-    // Obtener datos de los usuarios correspondientes a las transacciones
-    // const users = bookTransactions.map(transaction => {
-    //   const user = USER.find(u => u.id === transaction.id_user);
-    //   return {
-    //     ...user,
-    //     condition: transaction.condition,
-    //     cost: actionType === 'buy' ? transaction.cost : null
-    //   };
-    // });
+    const users = bookTransactions.map(transaction => {
+      const user = this.userService.users.find(u => u._id === transaction.id_user);
+      return {
+        ...user,
+        condition: transaction.condition,
+        cost: actionType === 'buy' ? transaction.cost : null
+      };
+    });
 
-    // Abrir el diálogo
-    // this.dialog.open(UserCardsDialogComponent, {
-    //   data: {
-    //     title,
-    //     users,
-    //   },
-    //   width: '400px',
-    // });
+    this.dialog.open(UserCardsDialogComponent, {
+      data: {
+        title,
+        users,
+      },
+      width: '400px',
+    });
   }
 
   generateStars(): void {

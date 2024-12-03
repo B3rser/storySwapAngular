@@ -46,7 +46,7 @@ export class UserService {
         console.log('User updated:', response);
         const index = this._users.findIndex((user) => user._id === id);
         if (index > -1) {
-          this._users[index] = response;
+          this._users[index] = { ...response }; 
         }
       },
       error: (error) => {

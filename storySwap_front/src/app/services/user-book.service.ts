@@ -16,15 +16,19 @@ export class BookUserService {
     return this._bookUsers;
   }
 
-  public fetchBookUsers(): void {
-    this.http.get<BookUser[]>(this.apiUrl).subscribe({
-      next: (response) => {
-        console.log('Book users fetched:', response);
-        this._bookUsers = response;
-      },
-      error: (error) => {
-        console.error('Error fetching book users:', error);
-      },
+  public fetchBookUsers(id: string): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<BookUser[]>(this.apiUrl).subscribe({
+        next: (response) => {
+          this._bookUsers = response.filter((item) => item.id_user === id);
+          console.log('Book users fetched:', this._bookUsers);
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error fetching book users:', error);
+          reject(error);
+        },
+      });
     });
   }
 

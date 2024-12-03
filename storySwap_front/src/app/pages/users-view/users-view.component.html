@@ -1,0 +1,14 @@
+<div style="display: flex; flex-direction: column; align-items: center; width: 100%;">
+    <h1 style="font-weight: 400">Users</h1>
+
+    <div *ngIf="users && users.length > 0; else emptyList" class="user-list-container">
+        <userview-card *ngFor="let user of users" [userInfo]="user" (edit)="edit(user._id, user)"
+            (delete)="delete( user._id)" />
+    </div>
+
+    <ng-template #emptyList>
+        <p>No users found</p>
+    </ng-template>
+</div>
+
+<user-edit-dialog >

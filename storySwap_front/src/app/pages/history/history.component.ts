@@ -28,6 +28,7 @@ export class HistoryComponent {
     this.HistoryService.fetchHistory(this.authService.getUser()._id);
     this.bookService.fetchBooks();
     this.userService.fetchUsers();
+    this.authService.load_user();
   }
 
   public get historyItems(): HistoryItem[] {

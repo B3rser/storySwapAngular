@@ -8,7 +8,7 @@ const userSchema = mongoose.Schema({
     name: String,
     type: {
         type: String,
-        default: 'enabled'
+        default: 'Normal'
     },
 });
 

@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Book } from '../interfaces/book';
 import { Observable, Subject } from 'rxjs';
@@ -7,14 +7,19 @@ import { AuthService } from './auth.service';
 @Injectable({
   providedIn: 'root',
 })
-export class BookService {
+export class BookService implements OnInit {
   private http = inject(HttpClient);
   private apiUrl = "http://localhost:8080/api/book";
   private _books: Book[] = [];
   private _filterBooks: Book[] = [];
   private _genres: String[] = [];
 
-  constructor() { }
+  constructor() {
+  }
+
+  ngOnInit(): void {
+    this.fetchBooks();
+  }
 
   get books(): Book[] {
     return this._filterBooks;

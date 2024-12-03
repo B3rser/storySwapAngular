@@ -36,7 +36,10 @@ const createNewUserBook = async (req = request, res = response) => {
     const { condition, cost, id_book, id_user, state, type } = req.body;
     const userBookData = { condition, cost, id_book, id_user, state, type };
 
-    if (!condition || !cost || !id_book || !id_user || !state || !type) {
+    console.log("Hello")
+    if (!condition || isNaN(cost) || !id_book || !id_user || !type) {
+        console.log(req.body)
+
         return res.status(400).json({
             msg: "Incomplete information: all fields are required."
         });

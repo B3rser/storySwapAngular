@@ -94,13 +94,14 @@ const updateUser = async (req = request, res = response) => {
     }
 
     try {
-        const existingUser = await UserRepository.getById(id);
+        var existingUser = await UserRepository.getById(id);
         if (!existingUser) {
             res.status(404).json({ msg: "Elemento no encontrado" });
             return;
         }
         const updatedUser = await UserRepository.updateById(id, updateFields);
-        res.status(200).json(updatedUser);
+        existingUser = await UserRepository.getById(id);
+        res.status(200).json(existingUser);
     } catch (error) {
         console.log(error);
         res.status(500).json({

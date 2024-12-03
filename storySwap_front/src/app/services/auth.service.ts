@@ -1,4 +1,4 @@
-import { inject, Injectable } from '@angular/core';
+import { inject, Injectable, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { tap } from 'rxjs/operators';
 import { User } from '../interfaces/user';
@@ -7,7 +7,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 @Injectable({
   providedIn: 'root'
 })
-export class AuthService {
+export class AuthService implements OnInit {
   private TOKEN_KEY: string = 'auth-token';
   private http = inject(HttpClient);
 
@@ -21,9 +21,34 @@ export class AuthService {
   };
   private apiUrl: string = 'http://localhost:8080/api/auth/';
 
-  constructor() {
-    if (this.getToken())
-      this.getUserInfo();
+  ngOnInit(): void {
+
+  }
+
+  public load_user(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      const token = this.getToken();
+      if (!token) {
+        console.error('No token found');
+        return reject('No token found');
+      }
+
+      const headers = new HttpHeaders({
+        Authorization: token
+      });
+
+      this.http.get<User>(`${this.apiUrl}me`, { headers }).subscribe({
+        next: (userInfo) => {
+          this._user = userInfo;
+          console.log('User Info Loaded:', this._user);
+          resolve();
+        },
+        error: (err) => {
+          console.error('Error fetching user info:', err);
+          reject(err);
+        }
+      });
+    });
   }
 
   public saveToken(token: string): void {
@@ -39,7 +64,7 @@ export class AuthService {
   }
 
   public removeUser(): void {
-    this._user = { 
+    this._user = {
       _id: '',
       name: '',
       last: '',
@@ -91,25 +116,8 @@ export class AuthService {
     return this._user;
   }
 
-  public getUserInfo(): void {
-    const token = this.getToken();
-    if (!token) {
-      console.error('No token found');
-      return;
-    }
-
-    const headers = new HttpHeaders({
-      Authorization: token
-    });
-
-    this.http.get<User>(`${this.apiUrl}me`, { headers }).subscribe({
-      next: (userInfo) => {
-        this._user = userInfo;
-        console.log('User Info Loaded:', this._user);
-      },
-      error: (err) => {
-        console.error('Error fetching user info:', err);
-      }
-    });
+  public getTypeUser(): string {
+    return this._user.type;
   }
+
 }

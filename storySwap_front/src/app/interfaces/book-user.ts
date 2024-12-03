@@ -1,6 +1,6 @@
 export interface BookUser {
     _id: string,
-    add_date: string,
+    add_date: Date,
     condition: string,
     cost: Number,
     id_book: string,

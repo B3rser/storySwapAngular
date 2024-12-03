@@ -25,6 +25,7 @@ export class WishlistComponent {
     this.titleService.setTitle('Wishlist');
     this.wishItemService.fetchWishItems(this.authService.getUser()._id)
     this.bookService.fetchBooks()
+    this.authService.load_user();
     console.log(this.wishItems);
   }
   

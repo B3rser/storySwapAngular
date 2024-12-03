@@ -1,16 +1,19 @@
-<div style="display: flex; flex-direction: column; align-items: center">
+<div *ngIf="dataLoaded; else loading" style="display: flex; flex-direction: column; align-items: center">
   <h1 style="font-weight: 400">Library</h1>
-  <div
-    *ngIf="books && books.length > 0; else emptyList"
-    class="library-list-container"
-  >
-    <book-card *ngFor="let Item of books" [book]="Item" />
+  <div *ngIf="bookUsers && bookUsers.length > 0; else emptyList" class="library-list-container">
+    <library-card *ngFor="let Item of bookUsers" [book]="getBookById(Item.id_book)" (delete)="deleteUserBook(Item._id)"
+      (edit)="editUserBook(Item._id, Item)" />
   </div>
 
   <ng-template #emptyList>
     <p>You don't have any books</p>
   </ng-template>
 
-  <add-book-catalog-dialog />
-  <add-book-dialog />
+  <!-- <add-book-catalog-dialog /> -->
+  <add-book-dialog [authService]="authService" [bookService]="bookService"
+    [userbookService]="userbookService" />
 </div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>
