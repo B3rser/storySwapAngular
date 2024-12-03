@@ -1,5 +1,5 @@
 export interface RequestSwap {
-    id: string;
+    _id: string;
     book1: string;
     book2: string;
     date1: Date;

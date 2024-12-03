@@ -33,27 +33,26 @@ const getRequestSwapById = async (req = request, res = response) => {
 }
 
 const createNewRequestSwap = async (req = request, res = response) => {
-    const { name, year, episodes, image, description, genre } = req.body;
-    const RequestSwapData = { name, year, episodes, image, description, genre }
+    const { book1, book2, state, type, user1, user2 } = req.body;
+    const requestSwapData = { book1, book2, state, type, user1, user2 };
 
-    if (!name || !year || !episodes || !image || !description || !genre) {
-        res.status(400).json({
-            msg: "Información Incompleta",
-            result: 12345
+    if (!book1 || !book2 || !state || !type || !user1 || !user2) {
+        return res.status(400).json({
+            msg: "Incomplete information: all fields are required."
         });
-        return;
     }
+
     try {
-        const savedRequestSwap = await RequestSwapRepository.create(RequestSwapData);
+        const savedRequestSwap = await RequestSwapRepository.create(requestSwapData);
         res.status(200).json(savedRequestSwap);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
-            msg: "Error al agregar el nuevo elemento",
-            result: 12345
+            msg: "Error adding the new request swap"
         });
     }
-}
+};
+
 
 const deleteRequestSwap = async (req = request, res = response) => {
     const { id } = req.params;

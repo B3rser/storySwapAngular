@@ -22,7 +22,9 @@
     <div class="buttons-container">
       <app-button label="Buy" type="buy" (action)="openUserCards($event)"></app-button>
       <app-button label="Swap" type="swap" (action)="openUserCards($event)"></app-button>
-      <app-button label="Add to wishlist" type="whishlist"></app-button>
+      <app-button [label]="isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'" type="whishlist" 
+        (click)="manageWishlist()">
+      </app-button>
     </div>
 
   </div>

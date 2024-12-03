@@ -45,7 +45,7 @@ export class EventService {
     this.http.put<Event>(`${this.apiUrl}/${id}`, updatedEvent).subscribe({
       next: (response) => {
         console.log('Event updated:', response);
-        const index = this._events.findIndex((event) => event.id === id);
+        const index = this._events.findIndex((event) => event._id === id);
         if (index > -1) {
           this._events[index] = response;
         }
@@ -60,7 +60,7 @@ export class EventService {
     this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log('Event deleted');
-        this._events = this._events.filter((event) => event.id !== id);
+        this._events = this._events.filter((event) => event._id !== id);
       },
       error: (error) => {
         console.error('Error deleting event:', error);

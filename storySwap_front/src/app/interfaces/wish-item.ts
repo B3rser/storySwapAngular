@@ -1,5 +1,6 @@
 export interface WishItem {
-    id: string;
+    _id: string;
     book: string;
-    date: Date; 
+    user: string;
+    add_date: Date;
 }

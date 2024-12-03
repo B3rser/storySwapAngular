@@ -13,6 +13,15 @@ class WishListRepository {
         return await WishList.findOne({ _id: id })
     }
 
+    static async getByUserBook(user, book) {
+        console.log("Hello")
+
+        if (!ObjectId.isValid(user) || !ObjectId.isValid(book)) {
+            return null;
+        }
+        return await WishList.findOne({ user: user, book: book })
+    }
+
     static async create(WishListData) {
         const newWishList = new WishList(WishListData);
         return await newWishList.save();

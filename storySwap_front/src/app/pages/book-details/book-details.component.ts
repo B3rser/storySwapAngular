@@ -11,6 +11,7 @@ import { BookService } from '../../services/book.service';
 import { BookUserService } from '../../services/user-book.service';
 import { WishItemService } from '../../services/wish-list.service';
 import { AuthService } from '../../services/auth.service';
+import { WishItem } from '../../interfaces/wish-item';
 
 @Component({
   selector: 'app-book-details',
@@ -31,16 +32,26 @@ export class BookDetailsComponent implements OnInit {
     release_date: 0,
     score: 0
   };
-  
+
+  public wishData: WishItem = {
+    _id: "",
+    book: "",
+    user: "",
+    add_date: new Date()
+  };
+
   public stars: number[] = [];
 
   private bookService = inject(BookService);
   private bookUserService = inject(BookUserService);
   private wishItemService = inject(WishItemService);
   private authService = inject(AuthService);
+  public isInWishlist = false;
 
-  constructor(private route: ActivatedRoute, private dialog: MatDialog) { }
-  
+  constructor(private route: ActivatedRoute, private dialog: MatDialog) {
+
+  }
+
   ngOnInit(): void {
     const id = this.route.snapshot.paramMap.get('id') ?? '';
     if (id) {
@@ -48,6 +59,19 @@ export class BookDetailsComponent implements OnInit {
         next: (book) => {
           this.book = book;
           this.generateStars();
+          this.wishItemService
+            .getbyUserBookIds(this.authService.getUser()._id, this.book._id)
+            .subscribe({
+              next: (wish) => {
+                this.wishData = wish;
+                this.isInWishlist = !!this.wishData?._id;
+                console.log(wish._id);
+                console.log(this.isInWishlist);
+              },
+              error: (error) => {
+                console.error('Error fetching wish item:', error);
+              },
+            });
         },
         error: (error) => {
           console.error('Error fetching book:', error);
@@ -90,5 +114,33 @@ export class BookDetailsComponent implements OnInit {
     const emptyStars = 5 - fullStars - halfStar;
 
     this.stars = [...Array(fullStars).fill(1), ...Array(halfStar).fill(0.5), ...Array(emptyStars).fill(0)];
+  }
+
+  public manageWishlist() {
+    if (this.isInWishlist && this.wishData?._id) {
+      this.wishItemService.deleteWishItem(this.wishData._id);
+      this.isInWishlist = false;
+      console.log(this.wishData);
+    } else {
+      console.log(this.wishData);
+
+      const newWishItem: WishItem = {
+        _id: "",
+        book: this.book._id,
+        user: this.authService.getUser()._id,
+        add_date: new Date(Date.now())
+      };
+
+      this.wishItemService.addWishItem(newWishItem).subscribe({
+        next: (wish) => {
+          console.log(wish)
+          this.wishData = wish;
+          this.isInWishlist = true;
+        },
+        error: (error) => {
+          console.error('Error fetching book:', error);
+        },
+      });
+    }
   }
 };

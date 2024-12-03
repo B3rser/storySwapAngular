@@ -1,12 +1,18 @@
 <div style="display: flex; flex-direction: column; align-items: center">
-  <div class="bannerScrollHorizontal">
-    <img class="bannerImg" src="assets/bannerEvent.png" />
-    <div style="margin-top: 10px;">
-      <button mat-icon-button class="circle-button">
-      </button>
-    </div>
-  </div>
-  <row-books [books]="books" [title]="'New'" />
-  <row-books [books]="books" [title]="'Most wished'" />
-  <row-books [books]="books" [title]="'Most sold'" />
+  <p-carousel
+    [value]="images"
+    [numVisible]="1"
+    [numScroll]="1"
+    [circular]="true"
+    [autoplayInterval]="3000"
+    styleClass="custom-carousel"
+  >
+    <ng-template pTemplate="item" let-image>
+      <img [src]="image" class="bannerImg" alt="Banner image" />
+    </ng-template>
+  </p-carousel>
+
+  <row-books [books]="books" class="title-home" [title]="'New'" />
+  <row-books [books]="books" class="title-home" [title]="'Most wished'" />
+  <row-books [books]="books" class="title-home" [title]="'Most sold'" />
 </div>

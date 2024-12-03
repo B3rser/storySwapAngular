@@ -45,27 +45,25 @@ const getUserById = async (req = request, res = response) => {
 }
 
 const createNewUser = async (req = request, res = response) => {
-    const { name, year, episodes, image, description, genre } = req.body;
-    const UserData = { name, year, episodes, image, description, genre }
+    const { address, email, password, last, name } = req.body;
+    const UserData = { address, email, password, last, name };
 
-    if (!name || !year || !episodes || !image || !description || !genre) {
-        res.status(400).json({
-            msg: "Información Incompleta",
-            result: 12345
+    if (!email || !password || !name) {
+        return res.status(400).json({
+            msg: "Incomplete information: email, password, and name are required",
         });
-        return;
     }
+
     try {
         const savedUser = await UserRepository.create(UserData);
         res.status(200).json(savedUser);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
-            msg: "Error al agregar el nuevo elemento",
-            result: 12345
+            msg: "Error adding the new user",
         });
     }
-}
+};
 
 const deleteUser = async (req = request, res = response) => {
     const { id } = req.params;

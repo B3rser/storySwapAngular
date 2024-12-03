@@ -12,7 +12,7 @@ export class BookService {
   private apiUrl = "http://localhost:8080/api/book";
   private _books: Book[] = [];
   private _filterBooks: Book[] = [];
-  private _genres: string[] = [];
+  private _genres: String[] = [];
 
   constructor() { }
 
@@ -20,7 +20,7 @@ export class BookService {
     return this._filterBooks;
   }
 
-  get genres(): string[] {
+  get genres(): String[] {
     return this._genres;
   }
 
@@ -37,7 +37,7 @@ export class BookService {
     });
   }
 
-  public getBookById(id: string): Observable<Book> {
+  public getBookById(id: String): Observable<Book> {
     const subject = new Subject<Book>();
 
     this.http.get<Book>(`${this.apiUrl}/${id}`).subscribe({
@@ -67,7 +67,7 @@ export class BookService {
     });
   }
 
-  public updateBook(id: string, updatedBook: Book): void {
+  public updateBook(id: String, updatedBook: Book): void {
     this.http.put<Book>(`${this.apiUrl}/${id}`, updatedBook).subscribe({
       next: (response) => {
         console.log('Book updated:', response);
@@ -83,7 +83,7 @@ export class BookService {
     });
   }
 
-  public deleteBook(id: string): void {
+  public deleteBook(id: String): void {
     this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log('Book deleted');
@@ -96,7 +96,7 @@ export class BookService {
     });
   }
 
-  public filterByGenre(genre: string) {
+  public filterByGenre(genre: String) {
     if (genre == "All")
       this._filterBooks = this._books;
     else

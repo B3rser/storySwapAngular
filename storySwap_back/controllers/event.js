@@ -43,23 +43,23 @@ const getEventById = async (req = request, res = response) => {
 };
 
 const createNewEvent = async (req = request, res = response) => {
-    const { name, date, description, state, ubication, image } = req.body;
-    const eventData = { name, date, description, state, ubication, image };
+    const { name, date, description, state, ubication, image, id_organizer } = req.body;
+    const eventData = { name, date, description, state, ubication, image, id_organizer };
 
-    if (!name || !date || !description || !state || !ubication || !image) {
-        res.status(400).json({
-            msg: "Información Incompleta",
+    if (!name || !date || !description || !state || !ubication || !image || !id_organizer) {
+        return res.status(400).json({
+            msg: "Incomplete information: all fields are required."
         });
-        return;
     }
 
     try {
+        eventData.add_date = new Date();
         const savedEvent = await EventRepository.create(eventData);
         res.status(200).json(savedEvent);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
-            msg: "Error al agregar el nuevo evento",
+            msg: "Error adding the new event"
         });
     }
 };

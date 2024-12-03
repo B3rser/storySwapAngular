@@ -25,3 +25,21 @@
   color: white;
   font-size: 18px;
 }
+
+.title-home{
+  color: #3E5C76;
+}
+
+.custom-carousel .p-carousel-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 300px; 
+}
+
+.bannerImg {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+}

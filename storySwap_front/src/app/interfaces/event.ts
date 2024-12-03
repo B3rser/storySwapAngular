@@ -1,5 +1,5 @@
 export interface Event {
-    id: string;
+    _id: string;
     add_date: Date,
     date: Date,
     description: string,

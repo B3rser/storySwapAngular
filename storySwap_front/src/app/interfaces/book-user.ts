@@ -1,10 +1,10 @@
 export interface BookUser {
-    id: String,
-    add_date: String,
-    condition: String,
+    _id: string,
+    add_date: string,
+    condition: string,
     cost: Number,
-    id_book: String,
-    id_user: String,
-    state: String,
-    type: String
+    id_book: string,
+    id_user: string,
+    state: string,
+    type: string
 }

@@ -46,25 +46,25 @@ const getBookById = async (req = request, res = response) => {
 }
 
 const createNewBook = async (req = request, res = response) => {
-    const { name, year, episodes, image, description, genre } = req.body;
-    const BookData = { name, year, episodes, image, description, genre }
+    const { author, title, description, gender, image, release_date, score } = req.body;
+    const BookData = { author, title, description, gender, image, release_date, score };
 
-    if (!name || !year || !episodes || !image || !description || !genre) {
-        res.status(400).json({
-            msg: "Información Incompleta",
+    if (!author || !title || !description || !gender || !image || !release_date || !score) {
+        return res.status(400).json({
+            msg: "Incomplete information: author, title, description, gender, image y release_date son obligatorios."
         });
-        return;
     }
+
     try {
         const savedBook = await BookRepository.create(BookData);
         res.status(200).json(savedBook);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
-            msg: "Error al agregar el nuevo elemento",
+            msg: "Error adding the new user"
         });
     }
-}
+};
 
 const deleteBook = async (req = request, res = response) => {
     const { id } = req.params;

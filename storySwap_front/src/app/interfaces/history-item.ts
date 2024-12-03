@@ -1,5 +1,5 @@
 export interface HistoryItem {
-  id: string;
+  _id: string;
   added_date: Date;
   id_book1: string;
   id_book2: string;

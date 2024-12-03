@@ -17,7 +17,7 @@ import { User } from '../../interfaces/user';
 export class HistoryCardComponent {
   @Input()
   public historyInfo: HistoryItem = {
-    id: '',
+    _id: '',
     added_date: new Date(),
     id_book1: '',
     id_book2: '',
@@ -26,7 +26,9 @@ export class HistoryCardComponent {
     type: '',
   };
 
+  @Input()
   public books: Book[] = [];
+  @Input()
   public users: User[] = [];
 
   private currentUserID: String = '1';

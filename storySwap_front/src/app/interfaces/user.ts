@@ -1,8 +1,8 @@
 export interface User {
-  _id: String;
-  name: String;
-  last: String;
-  address: String;
-  email: String;
-  type: String;
+  _id: string;
+  name: string;
+  last: string;
+  address: string;
+  email: string;
+  type: string;
 }

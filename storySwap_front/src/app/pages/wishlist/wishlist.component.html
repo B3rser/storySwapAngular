@@ -1,7 +1,7 @@
 <div style="display: flex; flex-direction: column; align-items: center">
   <h1 style="font-weight: 400">Wish List</h1>
   <div *ngIf="wishItems && wishItems.length > 0; else emptyList" class="wish-list-container">
-    <wish-card *ngFor="let wishItem of wishItems" [wishInfo]="wishItem" />
+    <wish-card *ngFor="let wishItem of wishItems" [wishInfo]="wishItem" [book]="getBookById(wishItem.book)"  (removeWish)="removeFromWishlist($event)"></wish-card>
   </div>
 
   <ng-template #emptyList>

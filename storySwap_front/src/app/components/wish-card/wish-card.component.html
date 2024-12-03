@@ -1,19 +1,13 @@
 <mat-card class="card">
-  <button mat-icon-button class="btn-close">
+  <button mat-icon-button class="btn-close" (click)="onRemoveClick()">
     <mat-icon>close</mat-icon>
   </button>
-  <img
-    [src]="book.image"
-    alt="{{ book.title }}"
-    class="book-image"
-  />
+  <img [src]="book.image" alt="{{ book.title }}" class="book-image" />
   <div class="card-body">
     <h5 class="book-title">{{ book.title }}</h5>
     <p class="book-author">{{ book.author }}</p>
     <p class="book-date">
-      Performed on {{ wishInfo.date.getDate() }}/{{
-        wishInfo.date.getMonth()
-      }}/{{ wishInfo.date.getFullYear() }}
+      Performed on {{ formattedDate }}
     </p>
   </div>
 </mat-card>

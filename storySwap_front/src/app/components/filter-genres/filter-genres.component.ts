@@ -22,8 +22,8 @@ export class FilterGenresComponent implements OnInit {
 
   ngOnInit(): void {
     this.bookService.getGenres().subscribe({
-      next: (genres) => {
-        this.genres = ['All', ...genres];
+      next: (result) => {
+        this.genres = ['All', ...result];
         console.log(this.genres)  
       },
       error: (error) => {

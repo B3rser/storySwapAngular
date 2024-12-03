@@ -1,4 +1,4 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { RouterModule } from '@angular/router';
@@ -22,6 +22,11 @@ import { CommonModule, NgIf } from '@angular/common';
 })
 export class NavBarMenuComponent {
   private auth = inject(AuthService);
+
+  public islogin(){
+    return this.auth.isLoggedIn(); 
+  }
+
 
   constructor() {
   }

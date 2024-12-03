@@ -33,27 +33,26 @@ const getHistoryById = async (req = request, res = response) => {
 }
 
 const createNewHistory = async (req = request, res = response) => {
-    const { name, year, episodes, image, description, genre } = req.body;
-    const HistoryData = { name, year, episodes, image, description, genre }
+    const { id_book1, id_book2, id_user1, id_user2, type } = req.body;
+    const historyData = { id_book1, id_book2, id_user1, id_user2, type };
 
-    if (!name || !year || !episodes || !image || !description || !genre) {
-        res.status(400).json({
-            msg: "Información Incompleta",
-            result: 12345
+    if (!id_book1 || !id_book2 || !id_user1 || !id_user2 || !type) {
+        return res.status(400).json({
+            msg: "Incomplete information: all fields are required."
         });
-        return;
     }
+
     try {
-        const savedHistory = await HistoryRepository.create(HistoryData);
+        historyData.added_date = new Date();
+        const savedHistory = await HistoryRepository.create(historyData);
         res.status(200).json(savedHistory);
     } catch (error) {
-        console.log(error);
+        console.error(error);
         res.status(500).json({
-            msg: "Error al agregar el nuevo elemento",
-            result: 12345
+            msg: "Error adding the new history record"
         });
     }
-}
+};
 
 const deleteHistory = async (req = request, res = response) => {
     const { id } = req.params;

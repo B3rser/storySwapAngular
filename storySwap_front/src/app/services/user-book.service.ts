@@ -44,7 +44,7 @@ export class BookUserService {
     this.http.put<BookUser>(`${this.apiUrl}/${id}`, updatedBookUser).subscribe({
       next: (response) => {
         console.log('Book user updated:', response);
-        const index = this._bookUsers.findIndex((bookUser) => bookUser.id === id);
+        const index = this._bookUsers.findIndex((bookUser) => bookUser._id === id);
         if (index > -1) {
           this._bookUsers[index] = response;
         }
@@ -59,7 +59,7 @@ export class BookUserService {
     this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log('Book user deleted');
-        this._bookUsers = this._bookUsers.filter((bookUser) => bookUser.id !== id);
+        this._bookUsers = this._bookUsers.filter((bookUser) => bookUser._id !== id);
       },
       error: (error) => {
         console.error('Error deleting book user:', error);

@@ -1,7 +1,7 @@
 <mat-drawer-container class="container" autosize>
   <div>
     <nav-bar-menu></nav-bar-menu>
-    <button  type="button" class="toggleButton" style="
+    <button *ngIf="islogin()" type="button" class="toggleButton" style="
         position: fixed;
         top: 50%;
         left: 10px;
@@ -17,7 +17,7 @@
   </div>
   <mat-drawer #drawer class="sidenav" mode="over">
     <div>
-      <h3 style="text-align: center">Welcome Uriel López</h3>
+      <h3 style="text-align: center">Welcome {{user.name}} {{user.last}}</h3>
       <div style="width: 100%; display: flex; justify-content: center">
         <img src="assets/iconwo.png" alt="Profile" width="250px" />
       </div>

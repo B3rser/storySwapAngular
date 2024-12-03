@@ -44,7 +44,7 @@ export class UserService {
     this.http.put<User>(`${this.apiUrl}/${id}`, updatedUser).subscribe({
       next: (response) => {
         console.log('User updated:', response);
-        const index = this._users.findIndex((user) => user.id === id);
+        const index = this._users.findIndex((user) => user._id === id);
         if (index > -1) {
           this._users[index] = response;
         }
@@ -59,7 +59,7 @@ export class UserService {
     this.http.delete(`${this.apiUrl}/${id}`).subscribe({
       next: () => {
         console.log('User deleted');
-        this._users = this._users.filter((user) => user.id !== id);
+        this._users = this._users.filter((user) => user._id !== id);
       },
       error: (error) => {
         console.error('Error deleting user:', error);
