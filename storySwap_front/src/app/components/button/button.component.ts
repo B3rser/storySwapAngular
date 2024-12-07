@@ -12,8 +12,8 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class ButtonComponent {
   @Input() label: string = 'Click Me';
   @Input() type: 'buy' | 'swap' | 'whishlist' | 'default' = 'default';
-  
-  @Output() action = new EventEmitter<string>(); 
+
+  @Output() action = new EventEmitter<string>();
 
   get buttonClass() {
     switch (this.type) {
@@ -29,7 +29,7 @@ export class ButtonComponent {
   }
 
   onClick() {
-    this.action.emit(this.type); 
+    this.action.emit(this.type);
   }
 }
 

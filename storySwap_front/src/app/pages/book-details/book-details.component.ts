@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Book } from '../../interfaces/book';
 import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
-import { NgForOf } from '@angular/common';
+import { NgForOf, NgIf } from '@angular/common';
 import { ButtonComponent } from '../../components/button/button.component';
 import { MatDialog } from '@angular/material/dialog';
 import { UserCardsDialogComponent } from '../../components/user-cards-dialog/user-cards-dialog.component';
@@ -17,7 +17,7 @@ import { UserService } from '../../services/user.service';
 @Component({
   selector: 'app-book-details',
   standalone: true,
-  imports: [MatCardModule, MatIconModule, NgForOf, ButtonComponent],
+  imports: [MatCardModule, MatIconModule, NgForOf, ButtonComponent, NgIf],
   templateUrl: './book-details.component.html',
   styleUrl: './book-details.component.css'
 })
@@ -49,12 +49,15 @@ export class BookDetailsComponent implements OnInit {
   private authService = inject(AuthService);
   private userService = inject(UserService);
   public isInWishlist = false;
+  public dataLoaded = false;
+  public isLogged = false;
 
   constructor(private route: ActivatedRoute, private dialog: MatDialog) {
 
   }
 
-  ngOnInit(): void {
+  async ngOnInit() {
+    this.dataLoaded = true;
     const id = this.route.snapshot.paramMap.get('id') ?? '';
     if (id) {
       this.bookService.getBookById(id).subscribe({
@@ -74,6 +77,12 @@ export class BookDetailsComponent implements OnInit {
                 console.error('Error fetching wish item:', error);
               },
             });
+          this.bookService.fetchBooks()
+          this.authService.load_user()
+          this.bookUserService.fetchAllBookUsers()
+          if(this.authService.isLoggedIn()){
+            this.isLogged = true
+          }
         },
         error: (error) => {
           console.error('Error fetching book:', error);
@@ -84,7 +93,13 @@ export class BookDetailsComponent implements OnInit {
   }
 
   openUserCards(actionType: string) {
-    const title = actionType === 'buy' ? 'Users Selling This Book' : 'Users Swapping This Book';
+    let title: string;
+    const res = actionType === "buy" 
+    if (res) {
+      title = 'Users Selling This Book';
+    } else {
+      title = 'Users Swapping This Book';
+    }
 
     const bookTransactions = this.bookUserService.bookUsers.filter(
       transaction => transaction.id_book === this.book._id && transaction.type === actionType
@@ -92,6 +107,7 @@ export class BookDetailsComponent implements OnInit {
 
     const users = bookTransactions.map(transaction => {
       const user = this.userService.users.find(u => u._id === transaction.id_user);
+      console.log(user)
       return {
         ...user,
         condition: transaction.condition,
@@ -103,6 +119,7 @@ export class BookDetailsComponent implements OnInit {
       data: {
         title,
         users,
+        actionType
       },
       width: '400px',
     });

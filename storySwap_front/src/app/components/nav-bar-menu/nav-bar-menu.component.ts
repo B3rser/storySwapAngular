@@ -27,7 +27,12 @@ export class NavBarMenuComponent {
     return this.auth.isLoggedIn(); 
   }
 
-
+  protected isAdmin(){
+    const type = this.auth.getTypeUser();
+    console.log(type)
+    console.log(type === 'Admin')
+    return type === 'Admin';
+  }
   constructor() {
   }
 }

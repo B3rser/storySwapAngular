@@ -63,7 +63,7 @@ export class AddBookDialogComponent implements OnInit {
     console.log(this.bookService.books)
   }
 
-  public selectionOptions = [{ label: 'For Sale', value: 'sale' }, { label: 'For Swap', value: 'swap' }]
+  public selectionOptions = [{ label: 'For Sale', value: 'buy' }, { label: 'For Swap', value: 'swap' }]
 
   selectedBookTitle: string = '';
   selectedCondition: string = '';

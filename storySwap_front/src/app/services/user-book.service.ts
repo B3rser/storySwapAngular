@@ -32,6 +32,22 @@ export class BookUserService {
     });
   }
 
+  public fetchAllBookUsers(): Promise<void> {
+    return new Promise((resolve, reject) => {
+      this.http.get<BookUser[]>(this.apiUrl).subscribe({
+        next: (response) => {
+          this._bookUsers = response;
+          console.log('Book users fetched:', this._bookUsers);
+          resolve();
+        },
+        error: (error) => {
+          console.error('Error fetching book users:', error);
+          reject(error);
+        },
+      });
+    });
+  }
+
   public addBookUser(bookUser: BookUser): void {
     this.http.post<BookUser>(this.apiUrl, bookUser).subscribe({
       next: (response) => {

@@ -1,4 +1,4 @@
-<div class="book-details-container">
+<div *ngIf="dataLoaded; else loading" class="book-details-container">
   <div class="book-image">
     <img [src]="book.image" alt="{{ book.title }}" />
   </div>
@@ -19,9 +19,9 @@
       <strong>score</strong>
     </p>
 
-    <div class="buttons-container">
-      <app-button label="Buy" type="buy" (action)="openUserCards($event)"></app-button>
-      <app-button label="Swap" type="swap" (action)="openUserCards($event)"></app-button>
+    <div *ngIf="isLogged" class="buttons-container">
+      <app-button label="Buy" [type]="'buy'" (action)="openUserCards($event)"></app-button>
+      <app-button label="Swap" [type]="'swap'" (action)="openUserCards($event)"></app-button>
       <app-button [label]="isInWishlist ? 'Remove from wishlist' : 'Add to wishlist'" type="whishlist" 
         (click)="manageWishlist()">
       </app-button>
@@ -29,3 +29,7 @@
 
   </div>
 </div>
+
+<ng-template #loading>
+  <p>loading...</p>
+</ng-template>

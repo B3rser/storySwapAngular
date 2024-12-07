@@ -12,7 +12,7 @@
       routerLinkActive="router-link-active">
       Events
     </button> -->
-    <button mat-button style="font-size: x-large; color: black; font-weight: 400" [routerLink]="['/users']"
+    <button *ngIf="isAdmin()" mat-button style="font-size: x-large; color: black; font-weight: 400" [routerLink]="['/users']"
       routerLinkActive="router-link-active">
       Users
     </button>
